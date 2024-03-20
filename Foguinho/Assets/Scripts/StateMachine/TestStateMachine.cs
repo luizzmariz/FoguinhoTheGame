@@ -1,80 +1,68 @@
-// using System.Collections;
-// using System.Collections.Generic;
-// using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 
-// public class TestStateMachine : StateMachine
-// {
-//     [HideInInspector]
-//     public IdleState idleState;
-//     [HideInInspector]
-//     public ChaseState chaseState;
+public class TestStateMachine : StateMachine
+{
+    //States
+    [HideInInspector] public IdleState idleState;
+    [HideInInspector] public ChaseState chaseState;
+    [HideInInspector] public HitState hitState;
+    [HideInInspector] public ChargingState chargingState;
 
-//     // [HideInInspector]
-//     // public Chasing chasingState;
-
-//     // [HideInInspector]
-//     // public Stun stunState;
-//     // [HideInInspector]
-//     // public Fallen fallenState;
-
-//     // public List<GameObject> targets;
-//     // public GameObject curTarget;
-
-//     //public Rigidbody2D rigidBody;
+    //Global information
+    [HideInInspector] public PathRequestManager pathRequestManager;
     
-//     [Header("Holder Components")]
+    //GameObject information
+    [Header("Holder Components")]
+    public Rigidbody rigidBody;
+    
+    [Header("Base Stats")]
+    [Range(0f,10f)] public float rangeOfView;
+    [Range(0f,10f)] public float rangeOfAttack;
+    [Range(0f,5f)] public float movementSpeed;
+    //public Vector2 movementSpeed;
+    public float life;
+    public float damage;
 
-//     public Rigidbody2D rigidBody2D;
-//     public Pathfinding pathfinding;
+    [Header("Other's Components")]
 
-//     [Header("Base Stats")]
+    public GameObject playerGameObject;
 
-//     [Range(0f,10f)] 
-//     public float rangeOfView;
-//     [Range(0f,5f)] 
-//     public float movementSpeed;
-//     //public Vector2 movementSpeed;
-//     public float life;
-//     public float damage;
+    private void Awake() {
+        GetInfo();
 
-//     [Header("Other's Components")]
+        idleState = new IdleState(this);
+        chaseState = new ChaseState(this);
+        hitState = new HitState(this);
+        chargingState = new ChargingState(this);
+    }
 
-//     public GameObject playerGameObject;
-//     public Grid grid;
+    public void GetInfo()
+    {
+        playerGameObject = GameObject.Find("Player");
+        pathRequestManager = GameObject.Find("PathfindingManager").GetComponent<PathRequestManager>();
 
-//     private void Awake() {
-//         GetInfo();
+        rigidBody = GetComponent<Rigidbody>();
+    }
 
-//         idleState = new IdleState(this);
-//         chaseState = new ChaseState(this);
-//     }
+    protected override BaseState GetInitialState() {
+        return idleState;
+    }
 
-//     public void GetInfo()
-//     {
-//         playerGameObject = GameObject.Find("Player");
-//         grid = GameObject.Find("Grid").GetComponent<Grid>();
+    // private void OnGUI()
+    // {
+    //     GUILayout.BeginArea(new Rect(10f, 10f, 200f, 100f));
+    //     string content = currentState != null ? currentState.name : "(no current state)";
+    //     GUILayout.Label($"<color='black'><size=40>{content}</size></color>");
+    //     GUILayout.EndArea();
+    // }
 
-//         rigidBody2D = GetComponent<Rigidbody2D>();
-//         pathfinding = GetComponent<Pathfinding>();
-//     }
-
-//     protected override BaseState GetInitialState() {
-//         return idleState;
-//     }
-
-//     // void OnCollisionEnter2D(Collision2D collisionInfo) {
-//     //     
-//     // }
-
-//     // void OnTriggerEnter2D(Collider2D collisionInfo) {
-//     //     
-//     // }
-
-//     // private void OnGUI()
-//     // {
-//     //     GUILayout.BeginArea(new Rect(10f, 10f, 200f, 100f));
-//     //     string content = currentState != null ? currentState.name : "(no current state)";
-//     //     GUILayout.Label($"<color='black'><size=40>{content}</size></color>");
-//     //     GUILayout.EndArea();
-//     // }
-// }
+    public void OnPathFound(Vector3[] newPath, bool pathSuccessful) {
+		if (pathSuccessful) {
+            Debug.Log("oi");
+			StopCoroutine(chaseState.FollowPath(newPath));
+			StartCoroutine(chaseState.FollowPath(newPath));
+		}
+	}
+}

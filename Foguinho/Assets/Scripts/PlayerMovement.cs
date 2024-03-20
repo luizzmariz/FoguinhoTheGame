@@ -85,11 +85,16 @@ public class PlayerMovement : MonoBehaviour
         {
             rb.velocity = direction.normalized * speed;
         }
+    }
 
-        //if the player isnt attacking, then the Move() should also turn his orientation. But if the player is attacking, the attack script should have priority on it! 
-        if(handOrientation != null && !GetComponent<PlayerAttack>().attacking)
+    void LateUpdate()
+    {
+        if(GetComponent<PlayerInput>().actions["move"].ReadValue<Vector2>() != Vector2.zero)
         {
-            handOrientation.ChangeOrientation(transform.position + direction * 10);
+            if(handOrientation != null && !GetComponent<PlayerAttack>().attacking)
+            {
+                handOrientation.ChangeOrientation(transform.position + direction * 10);
+            }
         }
     }
 }
