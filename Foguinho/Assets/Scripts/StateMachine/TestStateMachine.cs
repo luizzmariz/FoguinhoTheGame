@@ -12,22 +12,19 @@ public class TestStateMachine : StateMachine
 
     //Global information
     [HideInInspector] public PathRequestManager pathRequestManager;
+    [HideInInspector] public GameObject playerGameObject;
     
     //GameObject information
     [Header("Holder Components")]
     public Rigidbody rigidBody;
+    public Animator animator;
     
-    [Header("Base Stats")]
-    [Range(0f,10f)] public float rangeOfView;
-    [Range(0f,10f)] public float rangeOfAttack;
-    [Range(0f,5f)] public float movementSpeed;
-    //public Vector2 movementSpeed;
+    [Header("Attributes")]
+    [Range(0f, 50f)] public float rangeOfView;
+    [Range(0f, 25f)] public float rangeOfAttack;
+    [Range(0f, 10f)] public float movementSpeed;
     public float life;
     public float damage;
-
-    [Header("Other's Components")]
-
-    public GameObject playerGameObject;
 
     private void Awake() {
         GetInfo();
@@ -40,29 +37,34 @@ public class TestStateMachine : StateMachine
 
     public void GetInfo()
     {
+        rigidBody = GetComponent<Rigidbody>();
+        animator = GetComponent<Animator>();
+
         playerGameObject = GameObject.Find("Player");
         pathRequestManager = GameObject.Find("PathfindingManager").GetComponent<PathRequestManager>();
-
-        rigidBody = GetComponent<Rigidbody>();
     }
 
     protected override BaseState GetInitialState() {
         return idleState;
     }
 
-    // private void OnGUI()
-    // {
-    //     GUILayout.BeginArea(new Rect(10f, 10f, 200f, 100f));
-    //     string content = currentState != null ? currentState.name : "(no current state)";
-    //     GUILayout.Label($"<color='black'><size=40>{content}</size></color>");
-    //     GUILayout.EndArea();
-    // }
+    private void OnGUI()
+    {
+        GUILayout.BeginArea(new Rect(10f, 10f, 200f, 100f));
+        string content = currentState != null ? currentState.name : "(no current state)";
+        GUILayout.Label($"<color='black'><size=40>{content}</size></color>");
+        GUILayout.EndArea();
+    }
 
-    public void OnPathFound(Vector3[] newPath, bool pathSuccessful) {
-		if (pathSuccessful) {
-            Debug.Log("oi");
-			StopCoroutine(chaseState.FollowPath(newPath));
-			StartCoroutine(chaseState.FollowPath(newPath));
-		}
-	}
+    // public void OnPathFound(Vector3[] newPath, bool pathSuccessful) {
+	// 	if (pathSuccessful) {
+	// 		StopCoroutine(chaseState.FollowPath(newPath));
+	// 		StartCoroutine(chaseState.FollowPath(newPath));
+	// 	}
+	// }
+
+    // public void StopMovementCoroutine() {
+	// 	StopCoroutine(chaseState.FollowPath(new Vector3[0]));
+    //     Debug.Log("stopping");
+	// }
 }

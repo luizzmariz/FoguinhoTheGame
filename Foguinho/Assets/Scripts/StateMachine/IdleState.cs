@@ -12,15 +12,24 @@ public class IdleState : BaseState
     public override void Enter() {
         //base.Enter();
         //sm.rigidBody.GetComponent<SpriteRenderer>().color = new Color(0f, 0f, 0f, 1f);
+
+        //((TestStateMachine)stateMachine).animator.SetBool("isMoving", false);
     }
 
     public override void UpdateLogic() {
         //base.UpdateLogic();
         
+        //ACHO Q PRECISO MELHORAR ESSAS CHECAGENS DE TROCA DE STATE, PQ TA MEIO ZOADO.
+
+
         Vector3 holderPosition = ((TestStateMachine)stateMachine).transform.position;
         Vector3 playerPosition = ((TestStateMachine)stateMachine).playerGameObject.transform.position;
         
-        if(Vector3.Distance(holderPosition, playerPosition) <= ((TestStateMachine)stateMachine).rangeOfView)
+        if(Vector3.Distance(holderPosition, playerPosition) <= ((TestStateMachine)stateMachine).rangeOfAttack)
+        {
+            stateMachine.ChangeState(((TestStateMachine)stateMachine).chargingState);
+        }
+        else if(Vector3.Distance(holderPosition, playerPosition) <= ((TestStateMachine)stateMachine).rangeOfView)
         {
             stateMachine.ChangeState(((TestStateMachine)stateMachine).chaseState);
         }
