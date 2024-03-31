@@ -40,4 +40,9 @@ public class ChargingState : BaseState
     public override void UpdatePhysics() {
         base.UpdatePhysics();
     }
+
+    public void Attack()
+    {
+        Debug.Log("Alley Hoo");
+    }
 }

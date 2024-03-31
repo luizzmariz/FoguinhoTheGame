@@ -5,16 +5,16 @@ m_ProjectFiles:
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 638472303249141239
-    m_Hash: 167128808
+      ticks: 638472323636142368
+    m_Hash: 480424061
   m_LockFileStatus:
     m_FilePath: C:/Users/USER/Desktop/GAMEMAKER/FoguinhoTheGame/Foguinho/Packages/packages-lock.json
     m_PathExists: 1
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 638472303249230948
-    m_Hash: 3654825176
+      ticks: 638472323636142368
+    m_Hash: 166842947
 m_EmbeddedPackageManifests:
   m_ManifestsStatus: {}
 m_LocalPackages:

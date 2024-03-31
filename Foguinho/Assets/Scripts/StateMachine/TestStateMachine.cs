@@ -26,6 +26,9 @@ public class TestStateMachine : StateMachine
     public float life;
     public float damage;
 
+    // [Header("Attack")]
+    // public string typeOfAttack;
+
     private void Awake() {
         GetInfo();
 

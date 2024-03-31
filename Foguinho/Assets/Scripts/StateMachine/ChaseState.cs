@@ -105,34 +105,32 @@ public class ChaseState : BaseState
 		}
             
         Vector3 movementDirection = new Vector3(currentWaypoint.x - holderPosition.x, 0, currentWaypoint.z - holderPosition.z);
+        ChangeOrientation(movementDirection);
         ((TestStateMachine)stateMachine).rigidBody.velocity = movementDirection.normalized * ((TestStateMachine)stateMachine).movementSpeed;
 	}
 
-	// public IEnumerator FollowPath(Vector3[] newPath) 
-    // {
-    //     ((TestStateMachine)stateMachine).animator.SetBool("isMoving", true);
-    //     path = newPath;
-    //     targetIndex = 0;
-	// 	Vector3 currentWaypoint = path[0];
-	// 	while (true) {
-	// 		if (holderPosition == currentWaypoint) {
-	// 			targetIndex ++;
-	// 			if (targetIndex >= path.Length) {
-    //                 hasAskedPath = false;
-	// 				yield break;
-	// 			}
-	// 			currentWaypoint = path[targetIndex];
-	// 		}
+    public void ChangeOrientation(Vector3 movementDirection)
+    {
+        Quaternion LookAtRotation = Quaternion.LookRotation(movementDirection);
+        float orientationAngle = LookAtRotation.eulerAngles.y;
 
-	// 		//holderPosition = Vector3.MoveTowards(holderPosition, currentWaypoint, ((TestStateMachine)stateMachine).movementSpeed * Time.deltaTime);
-
-    //         Vector3 movementDirection = new Vector3(currentWaypoint.x - holderPosition.x, 0, currentWaypoint.z - holderPosition.z);
-    //         ((TestStateMachine)stateMachine).rigidBody.velocity = movementDirection.normalized * ((TestStateMachine)stateMachine).movementSpeed;
-    //         Debug.Log("holderPosition from Coroutine: " + holderPosition);
-	// 		yield return null;
-	// 	}
-    //     // yield return null;
-	// }
+        if((orientationAngle > 315f && orientationAngle <= 360f) || (orientationAngle >= 0f && orientationAngle <= 45f))
+        {
+            // spriteOrientation = "back";
+        }
+        else if(orientationAngle > 46f && orientationAngle <= 135f)
+        {
+            // spriteOrientation = "right";
+        }
+        else if(orientationAngle > 135f && orientationAngle <= 225f)
+        {
+            // spriteOrientation = "forward";
+        }
+        else if(orientationAngle > 225f && orientationAngle <= 315f)
+        {
+            // spriteOrientation = "left";
+        }
+    }
 
 	public void OnDrawGizmos() 
     {
