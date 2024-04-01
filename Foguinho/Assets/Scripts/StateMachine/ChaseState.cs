@@ -74,7 +74,7 @@ public class ChaseState : BaseState
             for(int i = 0; i < newPath.Length; i++)
             {
                 newPath[i].y = 5;
-                Debug.Log("wayPoint " + i + " is: " + newPath[i]);
+                //Debug.Log("wayPoint " + i + " is: " + newPath[i]);
             }
             targetIndex = 0;
             hasAskedPath = false;
@@ -116,19 +116,27 @@ public class ChaseState : BaseState
 
         if((orientationAngle > 315f && orientationAngle <= 360f) || (orientationAngle >= 0f && orientationAngle <= 45f))
         {
-            // spriteOrientation = "back";
+            ((TestStateMachine)stateMachine).animator.SetInteger("orientationNumber", 3);
+            // ((TestStateMachine)stateMachine).spriteRenderer.flipX = false;
+            //back
         }
         else if(orientationAngle > 46f && orientationAngle <= 135f)
         {
-            // spriteOrientation = "right";
+            ((TestStateMachine)stateMachine).animator.SetInteger("orientationNumber", 0);
+            ((TestStateMachine)stateMachine).spriteRenderer.flipX = false;
+            //right
         }
         else if(orientationAngle > 135f && orientationAngle <= 225f)
         {
-            // spriteOrientation = "forward";
+            ((TestStateMachine)stateMachine).animator.SetInteger("orientationNumber", 2);
+            // ((TestStateMachine)stateMachine).spriteRenderer.flipX = false;
+            //forward
         }
         else if(orientationAngle > 225f && orientationAngle <= 315f)
         {
-            // spriteOrientation = "left";
+            ((TestStateMachine)stateMachine).animator.SetInteger("orientationNumber", 1);
+            ((TestStateMachine)stateMachine).spriteRenderer.flipX = true;
+            //left
         }
     }
 

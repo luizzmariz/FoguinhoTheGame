@@ -501,6 +501,7 @@ MonoBehaviour:
   playerGameObject: {fileID: 116058764}
   rigidBody: {fileID: 131004376}
   animator: {fileID: 131004380}
+  spriteRenderer: {fileID: 0}
   rangeOfView: 10
   rangeOfAttack: 2
   movementSpeed: 2

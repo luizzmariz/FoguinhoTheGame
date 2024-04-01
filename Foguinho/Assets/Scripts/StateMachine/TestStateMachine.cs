@@ -18,6 +18,7 @@ public class TestStateMachine : StateMachine
     [Header("Holder Components")]
     public Rigidbody rigidBody;
     public Animator animator;
+    public SpriteRenderer spriteRenderer;
     
     [Header("Attributes")]
     [Range(0f, 50f)] public float rangeOfView;
@@ -42,6 +43,7 @@ public class TestStateMachine : StateMachine
     {
         rigidBody = GetComponent<Rigidbody>();
         animator = GetComponent<Animator>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
 
         playerGameObject = GameObject.Find("Player");
         pathRequestManager = GameObject.Find("PathfindingManager").GetComponent<PathRequestManager>();
