@@ -507,6 +507,8 @@ MonoBehaviour:
   movementSpeed: 2
   life: 10
   damage: 1
+  attackCooldownTimer: 0
+  attackDuration: 2
 --- !u!65 &131004378
 BoxCollider:
   m_ObjectHideFlags: 0

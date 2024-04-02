@@ -26,6 +26,8 @@ public class TestStateMachine : StateMachine
     [Range(0f, 10f)] public float movementSpeed;
     public float life;
     public float damage;
+    public float attackCooldownTimer;
+    public float attackDuration;
 
     // [Header("Attack")]
     // public string typeOfAttack;
@@ -37,6 +39,18 @@ public class TestStateMachine : StateMachine
         chaseState = new ChaseState(this);
         hitState = new HitState(this);
         chargingState = new ChargingState(this);
+    }
+
+    protected override void HelpUpdate()
+    {
+        if(attackCooldownTimer > 0)
+        {
+            attackCooldownTimer -= Time.deltaTime;
+        }
+        else
+        {
+            attackCooldownTimer = 0;
+        }
     }
 
     public void GetInfo()
@@ -61,15 +75,16 @@ public class TestStateMachine : StateMachine
         GUILayout.EndArea();
     }
 
-    // public void OnPathFound(Vector3[] newPath, bool pathSuccessful) {
-	// 	if (pathSuccessful) {
-	// 		StopCoroutine(chaseState.FollowPath(newPath));
-	// 		StartCoroutine(chaseState.FollowPath(newPath));
-	// 	}
-	// }
+    public void ChargingAttackSucessfull()
+    {
+        if(currentState == chargingState)
+        {
+            chargingState.Attack();
+        }
+    }
 
-    // public void StopMovementCoroutine() {
-	// 	StopCoroutine(chaseState.FollowPath(new Vector3[0]));
-    //     Debug.Log("stopping");
-	// }
+    public void CastAttackEnded()
+    {
+        chargingState.AttackEnded();
+    }
 }

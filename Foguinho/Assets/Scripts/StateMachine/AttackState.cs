@@ -14,19 +14,10 @@ public class ChargingState : BaseState
         base.Enter();
 
         ((TestStateMachine)stateMachine).animator.SetBool("chargingAttack", true);
+        Debug.Log("wtf");
     }
 
     public override void UpdateLogic() {
-        //base.UpdateLogic();
-
-        // if(!((TestStateMachine)stateMachine).animator.GetCurrentAnimatorStateInfo(0).IsName("TestEnemyAttacking"))
-        // {
-        //     stateMachine.ChangeState(((TestStateMachine)stateMachine).idleState);
-        //     ((TestStateMachine)stateMachine).animator.SetBool("chargingAttack", false);
-        // };
-
-        //ACHO Q PRECISO MELHORAR ESSAS CHECAGENS DE TROCA DE STATE, PQ TA MEIO ZOADO.
-
         Vector3 holderPosition = ((TestStateMachine)stateMachine).transform.position;
         Vector3 playerPosition = ((TestStateMachine)stateMachine).playerGameObject.transform.position;
 
@@ -43,6 +34,16 @@ public class ChargingState : BaseState
 
     public void Attack()
     {
+        ((TestStateMachine)stateMachine).animator.SetBool("chargingAttack", false);
+        ((TestStateMachine)stateMachine).animator.SetTrigger("castAttack");
         Debug.Log("Alley Hoo");
+    }
+
+    public void AttackEnded()
+    {
+        ((TestStateMachine)stateMachine).animator.SetTrigger("attackEnd");
+        stateMachine.ChangeState(((TestStateMachine)stateMachine).idleState);
+        ((TestStateMachine)stateMachine).attackCooldownTimer = ((TestStateMachine)stateMachine).attackDuration;
+        Debug.Log("Hoolley");
     }
 }

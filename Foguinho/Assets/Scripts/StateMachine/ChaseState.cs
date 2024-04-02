@@ -22,7 +22,6 @@ public class ChaseState : BaseState
     public override void Enter() {
         //base.Enter();
         //sm.rigidBody.GetComponent<SpriteRenderer>().color = new Color(0f, 0f, 0f, 1f);
-        Debug.Log("opa");
         hasAskedPath = false;
         followingPath = false;
     }
@@ -39,15 +38,24 @@ public class ChaseState : BaseState
 
         if(Vector3.Distance(holderPosition, playerPosition) > ((TestStateMachine)stateMachine).rangeOfView)
         {
-            stateMachine.ChangeState(((TestStateMachine)stateMachine).idleState);
             ((TestStateMachine)stateMachine).rigidBody.velocity = Vector3.zero;
             ((TestStateMachine)stateMachine).animator.SetBool("isMoving", false);
+
+            stateMachine.ChangeState(((TestStateMachine)stateMachine).idleState);
         }
         else if(Vector3.Distance(holderPosition, playerPosition) < ((TestStateMachine)stateMachine).rangeOfAttack)
         {
-            stateMachine.ChangeState(((TestStateMachine)stateMachine).chargingState);
             ((TestStateMachine)stateMachine).rigidBody.velocity = Vector3.zero;
             ((TestStateMachine)stateMachine).animator.SetBool("isMoving", false);
+
+            if(((TestStateMachine)stateMachine).attackCooldownTimer == 0)
+            {
+                stateMachine.ChangeState(((TestStateMachine)stateMachine).chargingState);
+            }
+            else
+            {
+                stateMachine.ChangeState(((TestStateMachine)stateMachine).idleState);
+            }
         }
     }
 

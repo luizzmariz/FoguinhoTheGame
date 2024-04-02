@@ -10,10 +10,7 @@ public class IdleState : BaseState
     }
 
     public override void Enter() {
-        //base.Enter();
-        //sm.rigidBody.GetComponent<SpriteRenderer>().color = new Color(0f, 0f, 0f, 1f);
 
-        //((TestStateMachine)stateMachine).animator.SetBool("isMoving", false);
     }
 
     public override void UpdateLogic() {
@@ -27,7 +24,10 @@ public class IdleState : BaseState
         
         if(Vector3.Distance(holderPosition, playerPosition) <= ((TestStateMachine)stateMachine).rangeOfAttack)
         {
-            stateMachine.ChangeState(((TestStateMachine)stateMachine).chargingState);
+            if(((TestStateMachine)stateMachine).attackCooldownTimer == 0)
+            {
+                stateMachine.ChangeState(((TestStateMachine)stateMachine).chargingState);
+            }
         }
         else if(Vector3.Distance(holderPosition, playerPosition) <= ((TestStateMachine)stateMachine).rangeOfView)
         {
