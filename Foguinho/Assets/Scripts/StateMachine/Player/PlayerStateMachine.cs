@@ -1,47 +1,49 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerStateMachine : StateMachine
 {
     //States
     [HideInInspector] public PlayerIdleState idleState;
-    // [HideInInspector] public MoveState moveState;
-    // [HideInInspector] public AttackState attackState;
+    [HideInInspector] public PlayerMoveState moveState;
+    [HideInInspector] public PlayerAttackState attackState;
     // [HideInInspector] public DamageState damageState;
-    // [HideInInspector] public InteractState interactState;
+    [HideInInspector] public PlayerInteractState interactState;
     // [HideInInspector] public DeadState deadState;
 
     //Global information
-
     
     //GameObject information
     [Header("Holder Components")]
+    public PlayerInput playerInput;
     public Rigidbody rigidBody;
     public Animator animator;
     public SpriteRenderer spriteRenderer;
-    public Collider collider;
-    
+    public CharacterOrientation characterOrientation;
+
     [Header("Attributes")]
-    [Range(0f, 50f)] public float rangeOfView;
-    [Range(0f, 25f)] public float rangeOfAttack;
-    [Range(0f, 10f)] public float movementSpeed;
-    public float life;
-    public float damage;
-    public bool attacking;
+    public float runningMultiplier;
+    public float movementSpeed;
     public float attackCooldownTimer;
     public float attackDuration;
 
-    // [Header("Attack")]
-    // public string typeOfAttack;
+    [Header("Bools")]
+    public bool canMove;
+    // public bool isMoving;
+    public bool canAttack;
+    public bool isAttacking;
+    //public bool canAttackWhileMove;
 
     private void Awake() {
         GetInfo();
 
         idleState = new PlayerIdleState(this);
-        // chaseState = new ChaseState(this);
+        moveState = new PlayerMoveState(this);
+        attackState = new PlayerAttackState(this);
+        interactState = new PlayerInteractState(this);
         // hitState = new HitState(this);
-        // chargingState = new ChargingState(this);
     }
 
     protected override void HelpUpdate()
@@ -52,16 +54,18 @@ public class PlayerStateMachine : StateMachine
         }
         else
         {
-            attacking = false;
+            isAttacking = false;
             attackCooldownTimer = 0;
         }
     }
 
     public void GetInfo()
     {
+        playerInput = GetComponent<PlayerInput>();
         rigidBody = GetComponent<Rigidbody>();
-        //animator = GetComponent<Animator>();
+        animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+        characterOrientation = GetComponent<CharacterOrientation>();
     }
 
     protected override BaseState GetInitialState() {
@@ -76,30 +80,23 @@ public class PlayerStateMachine : StateMachine
         GUILayout.EndArea();
     }
 
-    public void OnFire()
+    public void OnMove()
     {
-        if(attackCooldownTimer == 0)
+        if(canMove)
         {
-            //GenerateAttack();
-            attacking = true;
-            attackCooldownTimer = attackDuration;
+            ChangeState(moveState);
         }
     }
 
-    public void OnInteractWithAmbient()
+    public void OnFire()
     {
-        // if(closestCollider != null && !dialogueManager.animator.GetBool("DialogueBoxIsOpen"))
-        // {
-        //     closestCollider.GetComponent<Interactable>().BaseInteract();
-        // }
-    }
-
-    public void OnEnter()
-    {
-        // if(dialogueManager.animator.GetBool("DialogueBoxIsOpen"))
-        // {
-        //     dialogueManager.DisplayNextSentence();
-        // }
+        if(canAttack)
+        {
+            if(attackCooldownTimer == 0)
+            {
+                ChangeState(attackState);
+            }
+        }
     }
 
     public void ChargingAttackSucessfull()

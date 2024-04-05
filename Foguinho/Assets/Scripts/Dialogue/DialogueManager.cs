@@ -15,12 +15,18 @@ public class DialogueManager : MonoBehaviour {
     public float typingSpeed;
     public bool isTyping;
 
+	public GameObject player;
+	public PlayerStateMachine playerStateMachine;
+
 	void Start() {
 		sentences = new Queue<string>();
+		player = GameObject.Find("Player");
+		playerStateMachine = player.GetComponent<PlayerStateMachine>();
 	}
 
 	public void StartDialogue(Dialogue dialogue, Sprite dialogueSprite)
 	{
+		playerStateMachine.ChangeState(playerStateMachine.interactState);
 		animator.SetBool("DialogueBoxIsOpen", true);
 
 		nameText.text = dialogue.name;
@@ -89,5 +95,6 @@ public class DialogueManager : MonoBehaviour {
 	void EndDialogue()
 	{
 		animator.SetBool("DialogueBoxIsOpen", false);
+		playerStateMachine.interactState.ExitState();
 	}
 }

@@ -9,7 +9,7 @@ public class PlayerAttack : MonoBehaviour
     [SerializeField] float attackDuration;
     public bool attacking;
     [SerializeField] private PlayerInput playerInput;
-    [SerializeField] private HandOrientation handOrientation;
+    [SerializeField] private CharacterOrientation characterOrientation;
 
     void Start()
     {
@@ -58,7 +58,7 @@ public class PlayerAttack : MonoBehaviour
             if(playerPlane.Raycast(ray, out hitDist))
             {
                 Vector3 targetPoint = ray.GetPoint(hitDist);
-                handOrientation.ChangeOrientation(targetPoint);
+                characterOrientation.ChangeOrientation(targetPoint);
             }
         }
         else if(playerInput.currentControlScheme == "Gamepad")
@@ -67,7 +67,7 @@ public class PlayerAttack : MonoBehaviour
 
             //this "new Vector3(x, 5, x) bellow is this way because of the height level of the character
             Vector3 targetPoint = new Vector3(transform.position.x + lookDirection.x * 10, 5, transform.position.z + lookDirection.y * 10);
-            handOrientation.ChangeOrientation(targetPoint);
+            characterOrientation.ChangeOrientation(targetPoint);
         }
     }
 }

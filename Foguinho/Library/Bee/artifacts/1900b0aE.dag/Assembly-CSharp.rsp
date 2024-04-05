@@ -358,9 +358,9 @@
 -analyzer:"C:/Program Files/Unity/Hub/Editor/2022.3.13f1/Editor/Data/Tools/Unity.SourceGenerators/Unity.SourceGenerators.dll"
 "Assets/Scripts/Camera&Resolution/CameraMovement.cs"
 "Assets/Scripts/Camera&Resolution/PixelBoy.cs"
+"Assets/Scripts/CharacterOrientation.cs"
 "Assets/Scripts/Dialogue/Dialogue.cs"
 "Assets/Scripts/Dialogue/DialogueManager.cs"
-"Assets/Scripts/HandOrientation.cs"
 "Assets/Scripts/Interactable.cs"
 "Assets/Scripts/NPCInteractable.cs"
 "Assets/Scripts/Pathfinding/Grid.cs"
@@ -380,7 +380,10 @@
 "Assets/Scripts/StateMachine/Enemies/HitState.cs"
 "Assets/Scripts/StateMachine/Enemies/IdleState.cs"
 "Assets/Scripts/StateMachine/Enemies/TestStateMachine.cs"
+"Assets/Scripts/StateMachine/Player/PlayerAttackState.cs"
 "Assets/Scripts/StateMachine/Player/PlayerIdleState.cs"
+"Assets/Scripts/StateMachine/Player/PlayerInteractState.cs"
+"Assets/Scripts/StateMachine/Player/PlayerMoveState.cs"
 "Assets/Scripts/StateMachine/Player/PlayerStateMachine.cs"
 -langversion:9.0
 

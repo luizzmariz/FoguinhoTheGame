@@ -11,7 +11,7 @@ public class PlayerInteract : MonoBehaviour
     private Collider closestCollider;
     public TMP_Text interactionText;
     public DialogueManager dialogueManager;
-    public KeyCode interactionKey;
+    //public KeyCode interactionKey;
 
     void Start()
     {

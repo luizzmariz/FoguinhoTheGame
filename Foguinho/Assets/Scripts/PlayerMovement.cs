@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public enum MovementState
-{
-    WALKING,
-    RUNNING
-}
+// public enum MovementState
+// {
+//     WALKING,
+//     RUNNING
+// }
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -18,7 +18,7 @@ public class PlayerMovement : MonoBehaviour
     public float speed;
     [HideInInspector]
     public Vector3 direction;
-    [SerializeField] private HandOrientation handOrientation;
+    [SerializeField] private CharacterOrientation characterOrientation;
 
     void Start()
     {
@@ -91,9 +91,9 @@ public class PlayerMovement : MonoBehaviour
     {
         if(GetComponent<PlayerInput>().actions["move"].ReadValue<Vector2>() != Vector2.zero)
         {
-            if(handOrientation != null && !GetComponent<PlayerAttack>().attacking)
+            if(characterOrientation != null && !GetComponent<PlayerAttack>().attacking)
             {
-                handOrientation.ChangeOrientation(transform.position + direction * 10);
+                characterOrientation.ChangeOrientation(transform.position + direction * 10);
             }
         }
     }
