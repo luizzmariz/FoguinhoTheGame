@@ -22,6 +22,7 @@ public class PlayerStateMachine : StateMachine
     public Animator animator;
     public SpriteRenderer spriteRenderer;
     public CharacterOrientation characterOrientation;
+    public WeaponManager weaponManager;
 
     [Header("Attributes")]
     public float runningMultiplier;
@@ -54,7 +55,6 @@ public class PlayerStateMachine : StateMachine
         }
         else
         {
-            isAttacking = false;
             attackCooldownTimer = 0;
         }
     }
@@ -66,6 +66,7 @@ public class PlayerStateMachine : StateMachine
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         characterOrientation = GetComponent<CharacterOrientation>();
+        weaponManager = GetComponentInChildren<WeaponManager>();
     }
 
     protected override BaseState GetInitialState() {
@@ -74,7 +75,7 @@ public class PlayerStateMachine : StateMachine
 
     private void OnGUI()
     {
-        GUILayout.BeginArea(new Rect(10f, 10f, 200f, 100f));
+        GUILayout.BeginArea(new Rect(10f, 400f, 200f, 100f));
         string content = currentState != null ? currentState.name : "(no current state)";
         GUILayout.Label($"<color='black'><size=40>{content}</size></color>");
         GUILayout.EndArea();
@@ -99,16 +100,8 @@ public class PlayerStateMachine : StateMachine
         }
     }
 
-    public void ChargingAttackSucessfull()
-    {
-        // if(currentState == chargingState)
-        // {
-        //     chargingState.Attack();
-        // }
-    }
-
     public void CastAttackEnded()
     {
-        // chargingState.AttackEnded();
+        isAttacking = false;
     }
 }

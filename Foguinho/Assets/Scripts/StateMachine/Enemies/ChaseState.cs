@@ -111,42 +111,12 @@ public class ChaseState : BaseState
 			}
 			currentWaypoint = path[targetIndex];
 		}
-            
-        Vector3 movementDirection = new Vector3(currentWaypoint.x - holderPosition.x, 0, currentWaypoint.z - holderPosition.z);
-        ChangeOrientation(movementDirection);
+        
+        ((TestStateMachine)stateMachine).characterOrientation.ChangeOrientation(currentWaypoint);
+
+        Vector3 movementDirection = currentWaypoint - holderPosition;
         ((TestStateMachine)stateMachine).rigidBody.velocity = movementDirection.normalized * ((TestStateMachine)stateMachine).movementSpeed;
 	}
-
-    public void ChangeOrientation(Vector3 movementDirection)
-    {
-        Quaternion LookAtRotation = Quaternion.LookRotation(movementDirection);
-        float orientationAngle = LookAtRotation.eulerAngles.y;
-
-        if((orientationAngle > 315f && orientationAngle <= 360f) || (orientationAngle >= 0f && orientationAngle <= 45f))
-        {
-            ((TestStateMachine)stateMachine).animator.SetInteger("orientationNumber", 3);
-            // ((TestStateMachine)stateMachine).spriteRenderer.flipX = false;
-            //back
-        }
-        else if(orientationAngle > 46f && orientationAngle <= 135f)
-        {
-            ((TestStateMachine)stateMachine).animator.SetInteger("orientationNumber", 0);
-            ((TestStateMachine)stateMachine).spriteRenderer.flipX = false;
-            //right
-        }
-        else if(orientationAngle > 135f && orientationAngle <= 225f)
-        {
-            ((TestStateMachine)stateMachine).animator.SetInteger("orientationNumber", 2);
-            // ((TestStateMachine)stateMachine).spriteRenderer.flipX = false;
-            //forward
-        }
-        else if(orientationAngle > 225f && orientationAngle <= 315f)
-        {
-            ((TestStateMachine)stateMachine).animator.SetInteger("orientationNumber", 1);
-            ((TestStateMachine)stateMachine).spriteRenderer.flipX = true;
-            //left
-        }
-    }
 
 	public void OnDrawGizmos() 
     {

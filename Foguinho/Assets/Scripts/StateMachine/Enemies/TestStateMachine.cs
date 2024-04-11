@@ -19,6 +19,8 @@ public class TestStateMachine : StateMachine
     public Rigidbody rigidBody;
     public Animator animator;
     public SpriteRenderer spriteRenderer;
+    public CharacterOrientation characterOrientation;
+    public EnemyDamageable enemyDamageable;
     
     [Header("Attributes")]
     [Range(0f, 50f)] public float rangeOfView;
@@ -58,6 +60,8 @@ public class TestStateMachine : StateMachine
         rigidBody = GetComponent<Rigidbody>();
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+        characterOrientation = GetComponent<CharacterOrientation>();
+        enemyDamageable = GetComponent<EnemyDamageable>();
 
         playerGameObject = GameObject.Find("Player");
         pathRequestManager = GameObject.Find("PathfindingManager").GetComponent<PathRequestManager>();
@@ -67,13 +71,13 @@ public class TestStateMachine : StateMachine
         return idleState;
     }
 
-    // private void OnGUI()
-    // {
-    //     GUILayout.BeginArea(new Rect(10f, 10f, 200f, 100f));
-    //     string content = currentState != null ? currentState.name : "(no current state)";
-    //     GUILayout.Label($"<color='black'><size=40>{content}</size></color>");
-    //     GUILayout.EndArea();
-    // }
+    private void OnGUI()
+    {
+        GUILayout.BeginArea(new Rect(10f, 10f, 200f, 100f));
+        string content = currentState != null ? currentState.name : "(no current state)";
+        GUILayout.Label($"<color='red'><size=40>{content}</size></color>");
+        GUILayout.EndArea();
+    }
 
     public void ChargingAttackSucessfull()
     {

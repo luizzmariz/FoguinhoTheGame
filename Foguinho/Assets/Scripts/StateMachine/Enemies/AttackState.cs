@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class ChargingState : BaseState
 {
+    Vector3 holderPosition;
+    Vector3 playerPosition;
 
     public ChargingState(TestStateMachine stateMachine) : base("Charging", stateMachine)
     {
@@ -14,12 +16,12 @@ public class ChargingState : BaseState
         base.Enter();
 
         ((TestStateMachine)stateMachine).animator.SetBool("chargingAttack", true);
-        Debug.Log("wtf");
+        
     }
 
     public override void UpdateLogic() {
-        Vector3 holderPosition = ((TestStateMachine)stateMachine).transform.position;
-        Vector3 playerPosition = ((TestStateMachine)stateMachine).playerGameObject.transform.position;
+        holderPosition = ((TestStateMachine)stateMachine).transform.position;
+        playerPosition = ((TestStateMachine)stateMachine).playerGameObject.transform.position;
 
         if(Vector3.Distance(holderPosition, playerPosition) > ((TestStateMachine)stateMachine).rangeOfAttack)
         {
@@ -29,14 +31,13 @@ public class ChargingState : BaseState
     }
 
     public override void UpdatePhysics() {
-        base.UpdatePhysics();
+        ((TestStateMachine)stateMachine).characterOrientation.ChangeOrientation(playerPosition);
     }
 
     public void Attack()
     {
         ((TestStateMachine)stateMachine).animator.SetBool("chargingAttack", false);
         ((TestStateMachine)stateMachine).animator.SetTrigger("castAttack");
-        Debug.Log("Alley Hoo");
     }
 
     public void AttackEnded()
@@ -44,6 +45,5 @@ public class ChargingState : BaseState
         ((TestStateMachine)stateMachine).animator.SetTrigger("attackEnd");
         stateMachine.ChangeState(((TestStateMachine)stateMachine).idleState);
         ((TestStateMachine)stateMachine).attackCooldownTimer = ((TestStateMachine)stateMachine).attackDuration;
-        Debug.Log("Hoolley");
     }
 }
