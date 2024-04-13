@@ -9,7 +9,7 @@ public class PlayerStateMachine : StateMachine
     [HideInInspector] public PlayerIdleState idleState;
     [HideInInspector] public PlayerMoveState moveState;
     [HideInInspector] public PlayerAttackState attackState;
-    // [HideInInspector] public DamageState damageState;
+    [HideInInspector] public PlayerDamageState damageState;
     [HideInInspector] public PlayerInteractState interactState;
     // [HideInInspector] public DeadState deadState;
 
@@ -23,6 +23,7 @@ public class PlayerStateMachine : StateMachine
     public SpriteRenderer spriteRenderer;
     public CharacterOrientation characterOrientation;
     public WeaponManager weaponManager;
+    public PlayerDamageable playerDamageable;
 
     [Header("Attributes")]
     public float runningMultiplier;
@@ -36,6 +37,7 @@ public class PlayerStateMachine : StateMachine
     public bool canAttack;
     public bool isAttacking;
     //public bool canAttackWhileMove;
+    public float invencibilityTime;
 
     private void Awake() {
         GetInfo();
@@ -44,7 +46,7 @@ public class PlayerStateMachine : StateMachine
         moveState = new PlayerMoveState(this);
         attackState = new PlayerAttackState(this);
         interactState = new PlayerInteractState(this);
-        // hitState = new HitState(this);
+        damageState = new PlayerDamageState(this);
     }
 
     protected override void HelpUpdate()
@@ -67,6 +69,7 @@ public class PlayerStateMachine : StateMachine
         spriteRenderer = GetComponent<SpriteRenderer>();
         characterOrientation = GetComponent<CharacterOrientation>();
         weaponManager = GetComponentInChildren<WeaponManager>();
+        playerDamageable = GetComponent<PlayerDamageable>();
     }
 
     protected override BaseState GetInitialState() {
@@ -89,7 +92,7 @@ public class PlayerStateMachine : StateMachine
         }
     }
 
-    public void OnFire()
+    public void OnFire1()
     {
         if(canAttack)
         {

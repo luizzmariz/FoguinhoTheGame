@@ -34,7 +34,7 @@ public class PlayerAttack : MonoBehaviour
         }
     }
 
-    public void OnFire()
+    public void OnFire1()
     {
         if(cooldownTimer == 0)
         {

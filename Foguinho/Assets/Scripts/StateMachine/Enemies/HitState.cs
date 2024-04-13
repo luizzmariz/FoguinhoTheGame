@@ -4,10 +4,9 @@ using UnityEngine;
 
 public class HitState : BaseState
 {
-    public float invencibilityTime;
     public HitState(TestStateMachine stateMachine) : base("Hit", stateMachine)
     {
-        invencibilityTime = 0.2f;
+
     }
 
     public override void Enter() {
@@ -18,21 +17,20 @@ public class HitState : BaseState
     }
 
     public override void UpdateLogic() {
-        if(invencibilityTime == 0)
+        if(((TestStateMachine)stateMachine).invencibilityTime == 0)
         {
             stateMachine.ChangeState(((TestStateMachine)stateMachine).idleState);
         }
     }
 
     public override void UpdatePhysics() {
-        
-        if(invencibilityTime > 0)
+        if(((TestStateMachine)stateMachine).invencibilityTime > 0)
         {
-            invencibilityTime -= Time.deltaTime;
+            ((TestStateMachine)stateMachine).invencibilityTime -= Time.deltaTime;
         }
         else
         {
-            invencibilityTime = 0;
+            ((TestStateMachine)stateMachine).invencibilityTime = 0;
         }
     }
 }

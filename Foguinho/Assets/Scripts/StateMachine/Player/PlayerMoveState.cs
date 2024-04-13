@@ -47,40 +47,43 @@ public class PlayerMoveState : BaseState
     {
         float horizontal = moveVector.x;
         float vertical = moveVector.y;
+        // float horizontal = Input.GetAxisRaw("Horizontal");
+        // float vertical = Input.GetAxisRaw("Vertical");
 
-        if(horizontal > 0f)
-        {
-            if(horizontal > 0.6f)
-            {
-                moveState = MovementState.RUNNING;
-            }
-            horizontal = 1f;
-        }
-        else if(horizontal < 0f)
-        {
-            if(horizontal < -0.6f)
-            {
-                moveState = MovementState.RUNNING;
-            }
-            horizontal = -1f;
-        }
-        if(vertical > 0f)
-        {
-            if(vertical > 0.6f)
-            {
-                moveState = MovementState.RUNNING;
-            }
-            vertical = 1f;
-        }
-        else if(vertical < 0f)
-        {
-            if(vertical < -0.6f)
-            {
-                moveState = MovementState.RUNNING;
-            }
-            vertical = -1f;
-        }
+        // if(horizontal > 0f)
+        // {
+        //     if(horizontal > 0.6f)
+        //     {
+        //         moveState = MovementState.RUNNING;
+        //     }
+        //     horizontal = 1f;
+        // }
+        // else if(horizontal < 0f)
+        // {
+        //     if(horizontal < -0.6f)
+        //     {
+        //         moveState = MovementState.RUNNING;
+        //     }
+        //     horizontal = -1f;
+        // }
+        // if(vertical > 0f)
+        // {
+        //     if(vertical > 0.6f)
+        //     {
+        //         moveState = MovementState.RUNNING;
+        //     }
+        //     vertical = 1f;
+        // }
+        // else if(vertical < 0f)
+        // {
+        //     if(vertical < -0.6f)
+        //     {
+        //         moveState = MovementState.RUNNING;
+        //     }
+        //     vertical = -1f;
+        // }
 
+        moveState = MovementState.RUNNING;
         direction = new Vector3(horizontal, 0, vertical);
     }
 

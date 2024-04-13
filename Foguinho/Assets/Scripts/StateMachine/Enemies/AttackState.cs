@@ -38,6 +38,7 @@ public class ChargingState : BaseState
     {
         ((TestStateMachine)stateMachine).animator.SetBool("chargingAttack", false);
         ((TestStateMachine)stateMachine).animator.SetTrigger("castAttack");
+        ((TestStateMachine)stateMachine).attackAnimator.SetTrigger("Attack");
     }
 
     public void AttackEnded()

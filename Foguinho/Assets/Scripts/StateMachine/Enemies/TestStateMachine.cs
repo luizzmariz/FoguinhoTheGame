@@ -21,15 +21,17 @@ public class TestStateMachine : StateMachine
     public SpriteRenderer spriteRenderer;
     public CharacterOrientation characterOrientation;
     public EnemyDamageable enemyDamageable;
+    public Animator attackAnimator;
     
     [Header("Attributes")]
     [Range(0f, 50f)] public float rangeOfView;
     [Range(0f, 25f)] public float rangeOfAttack;
     [Range(0f, 10f)] public float movementSpeed;
-    public float life;
     public float damage;
     public float attackCooldownTimer;
     public float attackDuration;
+    public float invencibilityTime;
+
 
     // [Header("Attack")]
     // public string typeOfAttack;
