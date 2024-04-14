@@ -28,16 +28,18 @@ public class PlayerStateMachine : StateMachine
     [Header("Attributes")]
     public float runningMultiplier;
     public float movementSpeed;
-    public float attackCooldownTimer;
+    public float attack1CooldownTimer;
+    public float attack2CooldownTimer;
     public float attackDuration;
 
-    [Header("Bools")]
+    [Header("Bools&etc")]
     public bool canMove;
     // public bool isMoving;
     public bool canAttack;
     public bool isAttacking;
     //public bool canAttackWhileMove;
     public float invencibilityTime;
+    public int attackType;
 
     private void Awake() {
         GetInfo();
@@ -51,13 +53,21 @@ public class PlayerStateMachine : StateMachine
 
     protected override void HelpUpdate()
     {
-        if(attackCooldownTimer > 0)
+        if(attack1CooldownTimer > 0)
         {
-            attackCooldownTimer -= Time.deltaTime;
+            attack1CooldownTimer -= Time.deltaTime;
         }
         else
         {
-            attackCooldownTimer = 0;
+            attack1CooldownTimer = 0;
+        }
+        if(attack2CooldownTimer > 0)
+        {
+            attack2CooldownTimer -= Time.deltaTime;
+        }
+        else
+        {
+            attack2CooldownTimer = 0;
         }
     }
 
@@ -94,15 +104,29 @@ public class PlayerStateMachine : StateMachine
 
     public void OnFire1()
     {
+        attackType = 1;
         if(canAttack)
         {
-            if(attackCooldownTimer == 0)
+            if(attack1CooldownTimer == 0)
             {
                 ChangeState(attackState);
             }
         }
     }
 
+    public void OnFire2()
+    {
+        attackType = 2;
+        if(canAttack)
+        {
+            if(attack2CooldownTimer == 0)
+            {
+                ChangeState(attackState);
+            }
+        }
+    }
+
+    //we need to change this after we got some basic character animations - this functions need to be called by the character animations and not by the attack animation
     public void CastAttackEnded()
     {
         isAttacking = false;

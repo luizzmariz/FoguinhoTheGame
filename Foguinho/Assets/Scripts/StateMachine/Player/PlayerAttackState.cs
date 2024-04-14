@@ -23,8 +23,16 @@ public class PlayerAttackState : BaseState
         ((PlayerStateMachine)stateMachine).rigidBody.velocity = Vector3.zero;
         ((PlayerStateMachine)stateMachine).canMove = false;
         ((PlayerStateMachine)stateMachine).isAttacking = true;
-        ((PlayerStateMachine)stateMachine).attackCooldownTimer = ((PlayerStateMachine)stateMachine).attackDuration;
+        if(((PlayerStateMachine)stateMachine).attackType == 1)
+        {
+            ((PlayerStateMachine)stateMachine).attack1CooldownTimer = ((PlayerStateMachine)stateMachine).attackDuration;
 
+        }
+        else if(((PlayerStateMachine)stateMachine).attackType == 2)
+        {
+            ((PlayerStateMachine)stateMachine).attack2CooldownTimer = ((PlayerStateMachine)stateMachine).attackDuration;
+
+        }
         SetAttack();
     }
 
@@ -108,6 +116,13 @@ public class PlayerAttackState : BaseState
             ((PlayerStateMachine)stateMachine).characterOrientation.ChangeOrientation(targetPoint);
         }
 
-        ((PlayerStateMachine)stateMachine).weaponManager.PrimaryAttack();        
+        if(((PlayerStateMachine)stateMachine).attackType == 1)
+        {
+            ((PlayerStateMachine)stateMachine).weaponManager.PrimaryAttack();        
+        }
+        else if(((PlayerStateMachine)stateMachine).attackType == 2)
+        {
+            ((PlayerStateMachine)stateMachine).weaponManager.SecondaryAttack();  
+        }
     }
 }

@@ -4,18 +4,23 @@ using UnityEngine;
 
 public class WeaponManager : MonoBehaviour
 {
-    public Animator weaponAnimator;
+    public Animator primaryWeaponAnimator;
+    public GameObject secondaryAttack;
+    public PlayerStateMachine playerStateMachine;
 
     public void Start()
     {
-        if(weaponAnimator == null)
-        {
-            weaponAnimator = GetComponentInChildren<Animator>();
-        }
+        playerStateMachine = GetComponentInParent<PlayerStateMachine>();
     }
 
     public void PrimaryAttack()
     {
-        weaponAnimator.SetTrigger("Attack");
+        primaryWeaponAnimator.SetTrigger("Attack");
+    }
+
+    public void SecondaryAttack()
+    {
+        Instantiate(secondaryAttack, transform.position, transform.rotation);
+        playerStateMachine.CastAttackEnded();
     }
 }
