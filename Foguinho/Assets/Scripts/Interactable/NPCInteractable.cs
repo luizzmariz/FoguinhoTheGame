@@ -11,4 +11,9 @@ public class NPCInteractable : Interactable
     {
         FindObjectOfType<DialogueManager>().StartDialogue(dialogue, dialogueSprite);
     }
+
+    public override string GetPromptMessage()
+    {
+        return "talk with " + promptMessage;
+    }
 }

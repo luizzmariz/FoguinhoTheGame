@@ -8,4 +8,9 @@ public class ScenarioInteractable : Interactable
     {
         Debug.Log("You interacted with " + promptMessage);
     }
+
+    public override string GetPromptMessage()
+    {
+        return "interact with " + promptMessage;
+    }
 }

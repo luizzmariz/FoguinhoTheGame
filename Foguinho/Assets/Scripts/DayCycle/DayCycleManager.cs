@@ -20,7 +20,8 @@ public class DayCycleManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        isRotating = false;
+        dayPhase = 0;
     }
 
     // Update is called once per frame
@@ -32,12 +33,12 @@ public class DayCycleManager : MonoBehaviour
             {
                 rotatingDuration -= Time.deltaTime;
                 rotation.x = degreesPerSecond * Time.deltaTime;
-                transform.Rotate(rotation, Space.World);
+                sunLight.transform.Rotate(rotation, Space.World);
             }
             else
             {
                 rotatingDuration = 0;
-                ControlDayCycle();
+                isRotating = false;
             }
         }
     }
@@ -53,25 +54,30 @@ public class DayCycleManager : MonoBehaviour
 
     public void ControlDayCycle()
     {
-        if(isRotating)
-        {
-            isRotating = false;
-        }
-        else
+        if(!isRotating)
         {
             if(isDay)
             {
                 if(dayPhase == 2)
                 {
+                    dayPhase = 0;
                     isDay = false;
-                    Debug.Log("issss night baby");
+                    degreesPerSecond = 5;
+                    rotatingDuration = 20;
                 }
-                degreesPerSecond = 15;
-                rotatingDuration = 4;
+                else
+                {
+                    dayPhase++;
+                    degreesPerSecond = 15;
+                    rotatingDuration = 4;
+                    Debug.Log(sunLight.transform.rotation.eulerAngles);
+                }
+                isRotating = true;
             }
             else
             {
-                Debug.Log("hehepa");
+                sunLight.transform.rotation = new Quaternion(0.42261827f,0,0,0.906307876f);
+                isDay = true;
             }
         }
     }

@@ -63,7 +63,7 @@ public class PlayerInteract : MonoBehaviour
         if(closestCollider != null && !dialogueManager.animator.GetBool("DialogueBoxIsOpen"))
         {        
             PlayerInput playerInput = GetComponent<PlayerInput>();
-            interactionText.text = "Press " + playerInput.actions["InteractWithAmbient"].GetBindingDisplayString(group: playerInput.currentControlScheme)  + " to interact with " + closestCollider.GetComponent<Interactable>().promptMessage;
+            interactionText.text = "Press " + playerInput.actions["InteractWithAmbient"].GetBindingDisplayString(group: playerInput.currentControlScheme)  + " to " + closestCollider.GetComponent<Interactable>().GetPromptMessage();
         }
         else 
         {

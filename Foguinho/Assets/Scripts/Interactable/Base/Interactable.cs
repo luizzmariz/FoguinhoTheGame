@@ -15,4 +15,9 @@ public abstract class Interactable : MonoBehaviour
     {
         
     }
+
+    public virtual string GetPromptMessage()
+    {
+        return promptMessage;
+    }
 }
