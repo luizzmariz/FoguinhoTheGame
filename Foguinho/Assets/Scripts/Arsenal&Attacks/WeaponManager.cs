@@ -18,9 +18,12 @@ public class WeaponManager : MonoBehaviour
         primaryWeaponAnimator.SetTrigger("Attack");
     }
 
-    public void SecondaryAttack()
+    public void SecondaryAttack(Vector3 orientation)
     {
-        Instantiate(secondaryAttack, transform.position, transform.rotation);
+        // Instantiate(secondaryAttack, transform.position, transform.rotation);
+        GameObject attack = Instantiate(secondaryAttack, transform.position, Quaternion.identity);
+        attack.GetComponent<RangedWeapon>().velocity = orientation.normalized * 8;
+        attack.GetComponent<RangedWeapon>().timeOfLife = 3;
         playerStateMachine.CastAttackEnded();
     }
 }

@@ -92,6 +92,8 @@ public class PlayerAttackState : BaseState
 
     public void SetAttack()
     {
+        Vector3 targetPoint = ((PlayerStateMachine)stateMachine).transform.position;
+
         if(((PlayerStateMachine)stateMachine).playerInput.currentControlScheme == "Keyboard&Mouse")
         {
             //this "new Vector3(x, 5, x) bellow is this way because of the height level of the character
@@ -103,7 +105,7 @@ public class PlayerAttackState : BaseState
 
             if(playerPlane.Raycast(ray, out hitDist))
             {
-                Vector3 targetPoint = ray.GetPoint(hitDist);
+                targetPoint = ray.GetPoint(hitDist);
                 ((PlayerStateMachine)stateMachine).characterOrientation.ChangeOrientation(targetPoint);
             }
         }
@@ -112,7 +114,7 @@ public class PlayerAttackState : BaseState
             Vector2 lookDirection = ((PlayerStateMachine)stateMachine).playerInput.actions["look"].ReadValue<Vector2>();
 
             //this "new Vector3(x, 5, x) bellow is this way because of the height level of the character
-            Vector3 targetPoint = new Vector3(((PlayerStateMachine)stateMachine).transform.position.x + lookDirection.x * 10, 5, ((PlayerStateMachine)stateMachine).transform.position.z + lookDirection.y * 10);
+            targetPoint = new Vector3(((PlayerStateMachine)stateMachine).transform.position.x + lookDirection.x * 10, 5, ((PlayerStateMachine)stateMachine).transform.position.z + lookDirection.y * 10);
             ((PlayerStateMachine)stateMachine).characterOrientation.ChangeOrientation(targetPoint);
         }
 
@@ -122,7 +124,7 @@ public class PlayerAttackState : BaseState
         }
         else if(((PlayerStateMachine)stateMachine).attackType == 2)
         {
-            ((PlayerStateMachine)stateMachine).weaponManager.SecondaryAttack();  
+            ((PlayerStateMachine)stateMachine).weaponManager.SecondaryAttack(targetPoint - ((PlayerStateMachine)stateMachine).transform.position);  
         }
     }
 }

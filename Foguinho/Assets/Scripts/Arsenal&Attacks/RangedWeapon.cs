@@ -8,10 +8,11 @@ public class RangedWeapon : MonoBehaviour
     [SerializeField] private int damageAmount;
     //public PlayerStateMachine playerStateMachine;
     public float timeOfLife;
+    public Vector3 velocity;
 
     public void Start()
     {
-        GetComponent<Rigidbody>().velocity = Vector3.forward * 5;
+        GetComponent<Rigidbody>().velocity = velocity;
         //playerStateMachine = transform.parent.GetComponentInParent<PlayerStateMachine>();
     }
 
