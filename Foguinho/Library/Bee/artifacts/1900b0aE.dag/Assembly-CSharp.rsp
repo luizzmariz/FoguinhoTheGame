@@ -368,6 +368,8 @@
 "Assets/Scripts/DayCycle/DayCycleManager.cs"
 "Assets/Scripts/Dialogue/Dialogue.cs"
 "Assets/Scripts/Dialogue/DialogueManager.cs"
+"Assets/Scripts/GameManager/GameManager.cs"
+"Assets/Scripts/HUD&UI/ButtonFunction.cs"
 "Assets/Scripts/Interactable/Base/Interactable.cs"
 "Assets/Scripts/Interactable/CheckpointInteractable.cs"
 "Assets/Scripts/Interactable/NPCInteractable.cs"

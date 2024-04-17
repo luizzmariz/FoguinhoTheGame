@@ -389,18 +389,9 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Enter",
-                    "type": "Value",
-                    "id": "9898a043-1ba8-418b-9215-186e2b944b16",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": true
-                },
-                {
-                    "name": "InteractWithAmbient",
+                    "name": "Options",
                     "type": "Button",
-                    "id": "a967a590-7e49-4c57-9c93-62ebc2c4bc51",
+                    "id": "40a767e9-11d0-4c8f-bf65-650208610cc9",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -828,45 +819,23 @@
                 },
                 {
                     "name": "",
-                    "id": "ddf88664-61ce-40a9-9539-6830956db918",
-                    "path": "<Gamepad>/buttonSouth",
+                    "id": "50259a5f-98cf-46aa-b8ae-79f22be6b147",
+                    "path": "<Gamepad>/start",
                     "interactions": "",
                     "processors": "",
-                    "groups": "Keyboard&Mouse;Gamepad;Touch;Joystick;XR",
-                    "action": "Enter",
+                    "groups": "Gamepad",
+                    "action": "Options",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
-                    "id": "fadaa35c-81c9-4016-9ade-ba1ed10515d9",
-                    "path": "<Keyboard>/enter",
+                    "id": "b5317a99-0918-40ad-92d2-ef2efbac5774",
+                    "path": "<Keyboard>/escape",
                     "interactions": "",
                     "processors": "",
-                    "groups": "Keyboard&Mouse;Gamepad;Touch;Joystick;XR",
-                    "action": "Enter",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "d553f0a3-85c0-4f16-895c-d71806a67c6b",
-                    "path": "<Gamepad>/rightShoulder",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "InteractWithAmbient",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "8f5f0d03-7d06-442e-ae0d-719fa3de6d75",
-                    "path": "<Keyboard>/e",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "InteractWithAmbient",
+                    "groups": "Keyboard&Mouse",
+                    "action": "Options",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
