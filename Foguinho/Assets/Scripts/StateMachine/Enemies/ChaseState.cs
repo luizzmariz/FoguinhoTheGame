@@ -79,11 +79,11 @@ public class ChaseState : BaseState
 
     public void OnPathFound(Vector3[] newPath, bool pathSuccessful) {
 		if (pathSuccessful) {
-            for(int i = 0; i < newPath.Length; i++)
-            {
-                newPath[i].y = 5;
-                //Debug.Log("wayPoint " + i + " is: " + newPath[i]);
-            }
+            // for(int i = 0; i < newPath.Length; i++)
+            // {
+            //     //newPath[i].y = 5;
+            //     //Debug.Log("wayPoint " + i + " is: " + newPath[i]);
+            // }
             targetIndex = 0;
             hasAskedPath = false;
             followingPath = true;

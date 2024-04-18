@@ -97,7 +97,7 @@ public class PlayerAttackState : BaseState
         if(((PlayerStateMachine)stateMachine).playerInput.currentControlScheme == "Keyboard&Mouse")
         {
             //this "new Vector3(x, 5, x) bellow is this way because of the height level of the character
-            Plane playerPlane = new Plane(Vector3.up, new Vector3(0, 5, 0));
+            Plane playerPlane = new Plane(Vector3.up, new Vector3(0, targetPoint.y, 0));
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             float hitDist;
 
@@ -114,7 +114,7 @@ public class PlayerAttackState : BaseState
             Vector2 lookDirection = ((PlayerStateMachine)stateMachine).playerInput.actions["look"].ReadValue<Vector2>();
 
             //this "new Vector3(x, 5, x) bellow is this way because of the height level of the character
-            targetPoint = new Vector3(((PlayerStateMachine)stateMachine).transform.position.x + lookDirection.x * 10, 5, ((PlayerStateMachine)stateMachine).transform.position.z + lookDirection.y * 10);
+            targetPoint = new Vector3(((PlayerStateMachine)stateMachine).transform.position.x + lookDirection.x * 10, targetPoint.y, ((PlayerStateMachine)stateMachine).transform.position.z + lookDirection.y * 10);
             ((PlayerStateMachine)stateMachine).characterOrientation.ChangeOrientation(targetPoint);
         }
 
