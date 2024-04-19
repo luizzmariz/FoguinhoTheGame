@@ -27,7 +27,11 @@ public class DayCycleManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        dayTime = 5;
+        //1 hora são 15 graus
+
+        //hora q o jogo começa
+        dayTime = 5.5f;
+        //graus por segundo (3 segundos para percorrer 1 hora no tempo do jogo)
         degreesPerSecond = 5;
         secondsBetweenHours = 3;
 
@@ -55,18 +59,24 @@ public class DayCycleManager : MonoBehaviour
         //     }
         // }
 
-        if(secondsBetweenHours > 0)
+        // if(secondsBetweenHours > 0)
+        // {
+        //     secondsBetweenHours -= Time.deltaTime;
+        // }
+        // else if(secondsBetweenHours <= 0)
+        // {
+        //     dayTime++;
+        //     if(dayTime == 24)
+        //     {
+        //         dayTime = 0;
+        //     }
+        //     secondsBetweenHours = 3;
+        // }
+
+        dayTime += Time.deltaTime/3;
+        if(dayTime >= 24)
         {
-            secondsBetweenHours -= Time.deltaTime;
-        }
-        else if(secondsBetweenHours <= 0)
-        {
-            dayTime++;
-            if(dayTime == 24)
-            {
-                dayTime = 0;
-            }
-            secondsBetweenHours = 3;
+           dayTime = 0; 
         }
 
         rotation.x = degreesPerSecond * Time.deltaTime;

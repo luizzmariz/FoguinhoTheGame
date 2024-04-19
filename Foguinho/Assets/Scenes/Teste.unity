@@ -2286,7 +2286,7 @@ MonoBehaviour:
     key5: {r: 0, g: 0, b: 0, a: 0}
     key6: {r: 0, g: 0, b: 0, a: 0}
     key7: {r: 0, g: 0, b: 0, a: 0}
-    ctime0: 0
+    ctime0: 6746
     ctime1: 13107
     ctime2: 43754
     ctime3: 46260
@@ -2313,6 +2313,7 @@ MonoBehaviour:
   dayPhase: 0
   sunLight: {fileID: 705507993}
   dayTime: 0
+  secondsBetweenHours: 0
   currentActionTokensTaken: 0
   currentAreaActionTokens: 18
 --- !u!4 &1453314734
