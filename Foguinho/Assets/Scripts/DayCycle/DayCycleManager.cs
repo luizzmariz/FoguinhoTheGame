@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class DayCycleManager : MonoBehaviour
 {
+    [Header("AmbientColor")]
+    public Gradient ambientColor;
+
     [Header("CycleRotation")]
     Vector3 rotation = Vector3.zero;
     public float degreesPerSecond;
@@ -34,6 +37,7 @@ public class DayCycleManager : MonoBehaviour
                 rotatingDuration -= Time.deltaTime;
                 rotation.x = degreesPerSecond * Time.deltaTime;
                 sunLight.transform.Rotate(rotation, Space.World);
+                RenderSettings.ambientLight = ambientColor.Evaluate(rotation.x/360);
             }
             else
             {
