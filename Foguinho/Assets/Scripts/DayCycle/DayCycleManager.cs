@@ -16,6 +16,10 @@ public class DayCycleManager : MonoBehaviour
     public int dayPhase;
     public GameObject sunLight;
 
+    [Header("DayTime")]
+    public float dayTime;
+    public float secondsBetweenHours;
+
     [Header("ActionTokens")]
     public float currentActionTokensTaken;
     public float currentAreaActionTokens;
@@ -23,6 +27,10 @@ public class DayCycleManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        dayTime = 5;
+        degreesPerSecond = 5;
+        secondsBetweenHours = 3;
+
         isRotating = false;
         dayPhase = 0;
     }
@@ -30,21 +38,40 @@ public class DayCycleManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(isRotating)
+        // if(isRotating)
+        // {
+        //     if(rotatingDuration > 0)
+        //     {
+        //         rotatingDuration -= Time.deltaTime;
+        //         rotation.x = degreesPerSecond * Time.deltaTime;
+        //         sunLight.transform.Rotate(rotation, Space.World);
+        //         RenderSettings.ambientLight = ambientColor.Evaluate(rotation.x/360);
+        //         RenderSettings.ambientLight = ambientColor.Evaluate(dayTime/24);
+        //     }
+        //     else
+        //     {
+        //         rotatingDuration = 0;
+        //         isRotating = false;
+        //     }
+        // }
+
+        if(secondsBetweenHours > 0)
         {
-            if(rotatingDuration > 0)
-            {
-                rotatingDuration -= Time.deltaTime;
-                rotation.x = degreesPerSecond * Time.deltaTime;
-                sunLight.transform.Rotate(rotation, Space.World);
-                RenderSettings.ambientLight = ambientColor.Evaluate(rotation.x/360);
-            }
-            else
-            {
-                rotatingDuration = 0;
-                isRotating = false;
-            }
+            secondsBetweenHours -= Time.deltaTime;
         }
+        else if(secondsBetweenHours <= 0)
+        {
+            dayTime++;
+            if(dayTime == 24)
+            {
+                dayTime = 0;
+            }
+            secondsBetweenHours = 3;
+        }
+
+        rotation.x = degreesPerSecond * Time.deltaTime;
+        sunLight.transform.Rotate(rotation, Space.World);
+        RenderSettings.ambientLight = ambientColor.Evaluate(dayTime/24);
     }
 
     public void UpdateActionTokens(float actionTokens)
