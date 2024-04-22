@@ -44,50 +44,7 @@ public class PlayerAttackState : BaseState
     }
 
     public override void UpdatePhysics() {
-        // //Checks to see if Backspace key is pressed which I define as melee attack; you can of course change this to anything you would want
-        // if (Input.GetKeyDown(KeyCode.Backspace))
-        // {
-        //     //Sets the meleeAttack bool to true
-        //     meleeAttack = true;
-        // }
-        // else
-        // {
-        //     //Turns off the meleeAttack bool
-        //     meleeAttack = false;
-        // }
-        // //Checks to see if meleeAttack is true and pressing up
-        // if (meleeAttack && Input.GetAxis("Vertical") > 0)
-        // {
-        //     // // Turns on the animation for the player to perform an upward melee attack
-        //     // anim.SetTrigger("UpwardMelee");
 
-        //     //Turns on the animation on the melee weapon to show the swipe area for the melee attack upwards
-        //     meleeAnimator.SetTrigger("UpwardMeleeSwipe");
-        // }
-        // //Checks to see if meleeAttack is true and pressing down while also not grounded
-        // if (meleeAttack && Input.GetAxis("Vertical") < 0
-        //  //&& !character.isGrounded
-        //  )
-        // {
-        //     // //Turns on the animation for the player to perform a downward melee attack
-        //     // anim.SetTrigger("DownwardMelee");
-
-        //     //Turns on the animation on the melee weapon to show the swipe area for the melee attack downwards
-        //     meleeAnimator.SetTrigger("DownwardMeleeSwipe");
-        // }
-        // //Checks to see if meleeAttack is true and not pressing any direction
-        // if ((meleeAttack && Input.GetAxis("Vertical") == 0)
-        //      //OR if melee attack is true and pressing down while grounded
-        //     || meleeAttack && (Input.GetAxis("Vertical") < 0
-        //      //&& character.isGrounded
-        //      ))
-        // {
-        //     // //Turns on the animation for the player to perform a forward melee attack
-        //     // anim.SetTrigger("ForwardMelee");
-
-        //     //Turns on the animation on the melee weapon to show the swipe area for the melee attack forwards
-        //     meleeAnimator.SetTrigger("ForwardMeleeSwipe");
-        // }
     }
 
     public void SetAttack()

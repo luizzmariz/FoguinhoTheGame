@@ -11,6 +11,8 @@ public class PlayerStateMachine : StateMachine
     [HideInInspector] public PlayerAttackState attackState;
     [HideInInspector] public PlayerDamageState damageState;
     [HideInInspector] public PlayerInteractState interactState;
+    [HideInInspector] public PlayerDashState playerDashState;
+    
     // [HideInInspector] public DeadState deadState;
 
     //Global information
@@ -30,14 +32,15 @@ public class PlayerStateMachine : StateMachine
     public float movementSpeed;
     public float attack1CooldownTimer;
     public float attack2CooldownTimer;
+    public float dashCooldownTimer;
     public float attackDuration;
 
     [Header("Bools&etc")]
     public bool canMove;
-    // public bool isMoving;
+    public bool canDash;
+    public bool isDashing;
     public bool canAttack;
     public bool isAttacking;
-    //public bool canAttackWhileMove;
     public float invencibilityTime;
     public int attackType;
 
@@ -49,6 +52,7 @@ public class PlayerStateMachine : StateMachine
         attackState = new PlayerAttackState(this);
         interactState = new PlayerInteractState(this);
         damageState = new PlayerDamageState(this);
+        playerDashState = new PlayerDashState(this);
     }
 
     protected override void HelpUpdate()
@@ -126,9 +130,25 @@ public class PlayerStateMachine : StateMachine
         }
     }
 
+    public void OnDash()
+    {
+        if(canDash)
+        {
+            if(dashCooldownTimer == 0)
+            {
+                ChangeState(attackState);
+            }
+        }
+    }
+
     //we need to change this after we got some basic character animations - this functions need to be called by the character animations and not by the attack animation
     public void CastAttackEnded()
     {
         isAttacking = false;
+    }
+
+    public void DashEnded()
+    {
+        isDashing = false;
     }
 }

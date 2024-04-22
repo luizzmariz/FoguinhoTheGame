@@ -24,6 +24,24 @@
                     "initialStateCheck": true
                 },
                 {
+                    "name": "InteractWithAmbient",
+                    "type": "Button",
+                    "id": "ac6d50d1-8443-4952-82aa-3766b872d9a0",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Enter",
+                    "type": "Button",
+                    "id": "4843d2df-04d1-4b5f-acd0-3b981fcdeedb",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "Fire1",
                     "type": "Button",
                     "id": "90cf2a86-bed8-4746-9b72-44eb6be39bc4",
@@ -42,18 +60,18 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "InteractWithAmbient",
+                    "name": "Dash",
                     "type": "Button",
-                    "id": "ac6d50d1-8443-4952-82aa-3766b872d9a0",
+                    "id": "470c1f4b-593c-4c11-b351-b614cfac4a48",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Enter",
+                    "name": "Trap",
                     "type": "Button",
-                    "id": "4843d2df-04d1-4b5f-acd0-3b981fcdeedb",
+                    "id": "2358802d-62a1-4aa4-8549-258bffb346ff",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -217,6 +235,28 @@
                 },
                 {
                     "name": "",
+                    "id": "c45123ac-9d6c-42d4-8ad0-1a3a46264fc5",
+                    "path": "<Gamepad>/leftTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "Fire2",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a18868f4-7dbf-4d15-8ad9-4aefd8b87022",
+                    "path": "<Mouse>/rightButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "Fire2",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "509841f5-cb3b-4681-9d7a-c6be039acdbc",
                     "path": "<Gamepad>/rightShoulder",
                     "interactions": "",
@@ -272,23 +312,45 @@
                 },
                 {
                     "name": "",
-                    "id": "c45123ac-9d6c-42d4-8ad0-1a3a46264fc5",
-                    "path": "<Gamepad>/leftTrigger",
+                    "id": "be50e174-5c98-4d6d-8975-03896a195ad2",
+                    "path": "<Keyboard>/space",
                     "interactions": "",
                     "processors": "",
-                    "groups": "Gamepad",
-                    "action": "Fire2",
+                    "groups": "Keyboard&Mouse",
+                    "action": "Dash",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
-                    "id": "a18868f4-7dbf-4d15-8ad9-4aefd8b87022",
-                    "path": "<Mouse>/rightButton",
+                    "id": "329c51e0-70dc-4f9f-9a7d-03d71947fac5",
+                    "path": "<Gamepad>/buttonSouth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "Dash",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "ea09c2cf-4898-490d-8e47-82dac4e6ec34",
+                    "path": "<Keyboard>/q",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
-                    "action": "Fire2",
+                    "action": "Trap",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "2dc86837-06bd-48a0-b54b-0c6c97d49c08",
+                    "path": "<Gamepad>/buttonEast",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "Trap",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
