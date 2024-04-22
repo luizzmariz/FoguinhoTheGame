@@ -11,7 +11,7 @@ public class PlayerStateMachine : StateMachine
     [HideInInspector] public PlayerAttackState attackState;
     [HideInInspector] public PlayerDamageState damageState;
     [HideInInspector] public PlayerInteractState interactState;
-    [HideInInspector] public PlayerDashState playerDashState;
+    [HideInInspector] public PlayerDashState dashState;
     
     // [HideInInspector] public DeadState deadState;
 
@@ -26,23 +26,30 @@ public class PlayerStateMachine : StateMachine
     public CharacterOrientation characterOrientation;
     public WeaponManager weaponManager;
     public PlayerDamageable playerDamageable;
+    public TrailRenderer trailRenderer;
 
-    [Header("Attributes")]
+    [Header("Movement")]
+    public bool canMove;
     public float runningMultiplier;
     public float movementSpeed;
-    public float attack1CooldownTimer;
-    public float attack2CooldownTimer;
-    public float dashCooldownTimer;
-    public float attackDuration;
 
-    [Header("Bools&etc")]
-    public bool canMove;
+    [Header("Dash")]
     public bool canDash;
     public bool isDashing;
+    public float dashingPower;
+    public float dashCooldownTimer;
+    public float dashingTime;
+
+    [Header("Attack")]
     public bool canAttack;
     public bool isAttacking;
-    public float invencibilityTime;
     public int attackType;
+    public float attackDuration;
+    public float attack1CooldownTimer;
+    public float attack2CooldownTimer;
+
+    [Header("InvencibilityTime")]
+    public float invencibilityTime;
 
     private void Awake() {
         GetInfo();
@@ -52,7 +59,7 @@ public class PlayerStateMachine : StateMachine
         attackState = new PlayerAttackState(this);
         interactState = new PlayerInteractState(this);
         damageState = new PlayerDamageState(this);
-        playerDashState = new PlayerDashState(this);
+        dashState = new PlayerDashState(this);
     }
 
     protected override void HelpUpdate()
@@ -84,6 +91,7 @@ public class PlayerStateMachine : StateMachine
         characterOrientation = GetComponent<CharacterOrientation>();
         weaponManager = GetComponentInChildren<WeaponManager>();
         playerDamageable = GetComponent<PlayerDamageable>();
+        trailRenderer = GetComponentInChildren<TrailRenderer>();
     }
 
     protected override BaseState GetInitialState() {
@@ -136,8 +144,17 @@ public class PlayerStateMachine : StateMachine
         {
             if(dashCooldownTimer == 0)
             {
-                ChangeState(attackState);
+                ChangeState(dashState);
             }
+        }
+    }
+
+    public void OnTrap()
+    {   
+        attackType = 3;
+        if(canAttack)
+        {
+            ChangeState(attackState);
         }
     }
 

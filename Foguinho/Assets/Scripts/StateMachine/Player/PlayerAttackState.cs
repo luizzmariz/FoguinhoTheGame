@@ -70,8 +70,15 @@ public class PlayerAttackState : BaseState
         {
             Vector2 lookDirection = ((PlayerStateMachine)stateMachine).playerInput.actions["look"].ReadValue<Vector2>();
 
-            //this "new Vector3(x, 5, x) bellow is this way because of the height level of the character
-            targetPoint = new Vector3(((PlayerStateMachine)stateMachine).transform.position.x + lookDirection.x * 10, targetPoint.y, ((PlayerStateMachine)stateMachine).transform.position.z + lookDirection.y * 10);
+            if(lookDirection != Vector2.zero)
+            {
+                targetPoint = new Vector3(((PlayerStateMachine)stateMachine).transform.position.x + lookDirection.x * 10, targetPoint.y, ((PlayerStateMachine)stateMachine).transform.position.z + lookDirection.y * 10);
+            }
+            else
+            {
+                targetPoint = ((PlayerStateMachine)stateMachine).characterOrientation.lastOrientation;
+            }
+            
             ((PlayerStateMachine)stateMachine).characterOrientation.ChangeOrientation(targetPoint);
         }
 
@@ -82,6 +89,10 @@ public class PlayerAttackState : BaseState
         else if(((PlayerStateMachine)stateMachine).attackType == 2)
         {
             ((PlayerStateMachine)stateMachine).weaponManager.SecondaryAttack(targetPoint - ((PlayerStateMachine)stateMachine).transform.position);  
+        }
+        else if(((PlayerStateMachine)stateMachine).attackType == 3)
+        {
+            ((PlayerStateMachine)stateMachine).weaponManager.PlaceTrap(targetPoint, ((PlayerStateMachine)stateMachine).transform.position);  
         }
     }
 }

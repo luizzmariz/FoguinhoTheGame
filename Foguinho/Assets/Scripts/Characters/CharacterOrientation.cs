@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CharacterOrientation : MonoBehaviour
 {
-    private Vector3 lastOrientation;
+    public Vector3 lastOrientation;
     //private string spriteOrientation;
     //public SpriteChanger sc;
     public Animator animator;

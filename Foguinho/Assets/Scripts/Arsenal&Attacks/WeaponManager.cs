@@ -6,6 +6,7 @@ public class WeaponManager : MonoBehaviour
 {
     public Animator primaryWeaponAnimator;
     public GameObject secondaryAttack;
+    public GameObject trap;
     public PlayerStateMachine playerStateMachine;
 
     public void Start()
@@ -25,5 +26,13 @@ public class WeaponManager : MonoBehaviour
         attack.GetComponent<RangedWeapon>().velocity = orientation.normalized * 8;
         attack.GetComponent<RangedWeapon>().timeOfLife = 3;
         playerStateMachine.CastAttackEnded();
+    }
+
+    public void PlaceTrap(Vector3 targetPosition, Vector3 playerPosition)
+    {
+        GameObject placedTrap = Instantiate(trap, transform.position, Quaternion.identity);
+        // attack.GetComponent<RangedWeapon>().velocity = orientation.normalized * 8;
+        placedTrap.GetComponent<Trap>().timeOfLife = 3;
+        // playerStateMachine.CastAttackEnded();
     }
 }

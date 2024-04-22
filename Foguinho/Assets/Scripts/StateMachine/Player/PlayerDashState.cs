@@ -9,11 +9,12 @@ public class PlayerDashState : BaseState
     }
 
     public override void Enter() {
-        ((PlayerStateMachine)stateMachine).rigidBody.velocity = Vector3.zero;
+        // ((PlayerStateMachine)stateMachine).rigidBody.velocity = Vector3.zero;
         ((PlayerStateMachine)stateMachine).canMove = false;
         ((PlayerStateMachine)stateMachine).canAttack = false;
+        ((PlayerStateMachine)stateMachine).canDash = false;
         ((PlayerStateMachine)stateMachine).isDashing = true;
-        Dash();
+        ((PlayerStateMachine)stateMachine).StartCoroutine(Dash());
     }
 
     public override void UpdateLogic() {
@@ -27,35 +28,13 @@ public class PlayerDashState : BaseState
 
     }
 
-    public void Dash()
+    public IEnumerator Dash()
     {
-        // Vector3 targetPoint = ((PlayerStateMachine)stateMachine).transform.position;
 
-        // if(((PlayerStateMachine)stateMachine).playerInput.currentControlScheme == "Keyboard&Mouse")
-        // {
-        //     //this "new Vector3(x, 5, x) bellow is this way because of the height level of the character
-        //     Plane playerPlane = new Plane(Vector3.up, new Vector3(0, targetPoint.y, 0));
-        //     Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        //     float hitDist;
-
-        //     Debug.DrawRay(ray.origin, ray.direction * 50, Color.blue, 50);
-
-        //     if(playerPlane.Raycast(ray, out hitDist))
-        //     {
-        //         targetPoint = ray.GetPoint(hitDist);
-        //         ((PlayerStateMachine)stateMachine).characterOrientation.ChangeOrientation(targetPoint);
-        //     }
-        // }
-        // else if(((PlayerStateMachine)stateMachine).playerInput.currentControlScheme == "Gamepad")
-        // {
-        //     Vector2 lookDirection = ((PlayerStateMachine)stateMachine).playerInput.actions["move"].ReadValue<Vector2>();
-
-        //     //this "new Vector3(x, 5, x) bellow is this way because of the height level of the character
-        //     targetPoint = new Vector3(((PlayerStateMachine)stateMachine).transform.position.x + lookDirection.x * 10, targetPoint.y, ((PlayerStateMachine)stateMachine).transform.position.z + lookDirection.y * 10);
-        //     ((PlayerStateMachine)stateMachine).characterOrientation.ChangeOrientation(targetPoint);
-        // }
-
-        Vector2 dashDirection = ((PlayerStateMachine)stateMachine).playerInput.actions["move"].ReadValue<Vector2>();
+        Vector2 dashDirectionV2 = ((PlayerStateMachine)stateMachine).playerInput.actions["move"].ReadValue<Vector2>();
+        Vector3 dashDirectionV3 = new Vector3(dashDirectionV2.x, 0, dashDirectionV2.y);
+        ((PlayerStateMachine)stateMachine).rigidBody.velocity = dashDirectionV3.normalized * ((PlayerStateMachine)stateMachine).dashingPower;
+        ((PlayerStateMachine)stateMachine).trailRenderer.emitting = true;
 
         // if(((PlayerStateMachine)stateMachine).attackType == 1)
         // {
@@ -65,5 +44,16 @@ public class PlayerDashState : BaseState
         // {
         //     ((PlayerStateMachine)stateMachine).weaponManager.SecondaryAttack(targetPoint - ((PlayerStateMachine)stateMachine).transform.position);  
         // }
+        yield return new WaitForSeconds(((PlayerStateMachine)stateMachine).dashingTime);
+
+        ((PlayerStateMachine)stateMachine).trailRenderer.emitting = false;
+        ((PlayerStateMachine)stateMachine).isDashing = false;
+        ((PlayerStateMachine)stateMachine).canMove = true;
+        ((PlayerStateMachine)stateMachine).canAttack = true;
+        ((PlayerStateMachine)stateMachine).rigidBody.velocity = Vector3.zero;
+
+        yield return new WaitForSeconds(((PlayerStateMachine)stateMachine).dashCooldownTimer);
+
+        ((PlayerStateMachine)stateMachine).canDash = true;
     }
 }
