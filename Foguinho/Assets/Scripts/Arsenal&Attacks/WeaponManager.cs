@@ -23,6 +23,8 @@ public class WeaponManager : MonoBehaviour
     {
         // Instantiate(secondaryAttack, transform.position, transform.rotation);
         GameObject attack = Instantiate(secondaryAttack, transform.position, Quaternion.identity);
+        // Quaternion LookAtRotation = Quaternion.LookRotation(orientation);
+        // attack.transform.rotation = Quaternion.Euler(attack.transform.rotation.eulerAngles.x, LookAtRotation.eulerAngles.y, attack.transform.rotation.eulerAngles.z);
         attack.GetComponent<RangedWeapon>().velocity = orientation.normalized * 8;
         attack.GetComponent<RangedWeapon>().timeOfLife = 3;
         playerStateMachine.CastAttackEnded();
@@ -31,8 +33,7 @@ public class WeaponManager : MonoBehaviour
     public void PlaceTrap(Vector3 targetPosition, Vector3 playerPosition)
     {
         GameObject placedTrap = Instantiate(trap, transform.position, Quaternion.identity);
-        // attack.GetComponent<RangedWeapon>().velocity = orientation.normalized * 8;
-        placedTrap.GetComponent<Trap>().timeOfLife = 3;
-        // playerStateMachine.CastAttackEnded();
+        //placedTrap.GetComponent<Trap>().timeOfLife = 3;
+        playerStateMachine.CastAttackEnded();
     }
 }

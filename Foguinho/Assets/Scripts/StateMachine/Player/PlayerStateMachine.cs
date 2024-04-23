@@ -47,6 +47,8 @@ public class PlayerStateMachine : StateMachine
     public float attackDuration;
     public float attack1CooldownTimer;
     public float attack2CooldownTimer;
+    public int trapsPlaced = 0;
+    public int trapsLimit;
 
     [Header("InvencibilityTime")]
     public float invencibilityTime;
@@ -161,6 +163,7 @@ public class PlayerStateMachine : StateMachine
     //we need to change this after we got some basic character animations - this functions need to be called by the character animations and not by the attack animation
     public void CastAttackEnded()
     {
+        canAttack = true;
         isAttacking = false;
     }
 

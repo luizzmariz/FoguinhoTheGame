@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 4247537453660418295}
   - component: {fileID: 5000463303430297121}
   - component: {fileID: 3011292917317189682}
-  - component: {fileID: 5181859245434968197}
   - component: {fileID: 801545712265870869}
+  - component: {fileID: -3600255642581274401}
   m_Layer: 0
   m_Name: Trap
   m_TagString: Untagged
@@ -46,7 +46,7 @@ Animator:
   m_GameObject: {fileID: 7736673274567297054}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 084869be1ba52c84c92eb02136463e36, type: 2}
+  m_Controller: {fileID: 9100000, guid: 6f6c723ea9d8913408008c0f73d4b123, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -132,20 +132,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &5181859245434968197
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7736673274567297054}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0bc2111f2fb4f4340b84733695f018dd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damageAmount: 5
-  timeOfLife: 2
 --- !u!54 &801545712265870869
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -173,3 +159,17 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &-3600255642581274401
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7736673274567297054}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d3a8124b85fdf045b7c97805bfecac8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damageAmount: 25
+  timeOfLife: 10

@@ -22,6 +22,7 @@ public class PlayerAttackState : BaseState
     public override void Enter() {
         ((PlayerStateMachine)stateMachine).rigidBody.velocity = Vector3.zero;
         ((PlayerStateMachine)stateMachine).canMove = false;
+        ((PlayerStateMachine)stateMachine).canAttack = false;
         ((PlayerStateMachine)stateMachine).isAttacking = true;
         if(((PlayerStateMachine)stateMachine).attackType == 1)
         {
@@ -39,6 +40,7 @@ public class PlayerAttackState : BaseState
     public override void UpdateLogic() {
         if(!((PlayerStateMachine)stateMachine).isAttacking)
         {
+            ((PlayerStateMachine)stateMachine).canMove = true;
             ((PlayerStateMachine)stateMachine).ChangeState(((PlayerStateMachine)stateMachine).idleState);
         }
     }
@@ -92,7 +94,15 @@ public class PlayerAttackState : BaseState
         }
         else if(((PlayerStateMachine)stateMachine).attackType == 3)
         {
-            ((PlayerStateMachine)stateMachine).weaponManager.PlaceTrap(targetPoint, ((PlayerStateMachine)stateMachine).transform.position);  
+            if(((PlayerStateMachine)stateMachine).trapsPlaced < ((PlayerStateMachine)stateMachine).trapsLimit)
+            {
+                ((PlayerStateMachine)stateMachine).weaponManager.PlaceTrap(targetPoint, ((PlayerStateMachine)stateMachine).transform.position);
+                ((PlayerStateMachine)stateMachine).trapsPlaced++;
+            }
+            else
+            {
+                ((PlayerStateMachine)stateMachine).CastAttackEnded();
+            }
         }
     }
 }

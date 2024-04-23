@@ -4165,6 +4165,8 @@ MonoBehaviour:
   attackDuration: 1
   attack1CooldownTimer: 0
   attack2CooldownTimer: 0
+  trapsPlaced: 0
+  trapsLimit: 5
   invencibilityTime: 0
 --- !u!114 &9006563478612585207
 MonoBehaviour:
