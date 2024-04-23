@@ -4,10 +4,23 @@ using UnityEngine;
 
 public class WeaponManager : MonoBehaviour
 {
-    public Animator primaryWeaponAnimator;
-    public GameObject secondaryAttack;
-    public GameObject trap;
     public PlayerStateMachine playerStateMachine;
+
+    [Header("Primary")]
+    public GameObject primaryAttack;
+    public Animator primaryWeaponAnimator;
+    public float primaryAttackDamage;
+
+    [Header("Secondary")]
+    public GameObject secondaryAttack;
+    public float secondaryAttackDamage;
+    public float secondaryAttackVelocity;
+    public float secondaryAttackTimeOfLife;
+
+    [Header("Trap")]
+    public GameObject trap;
+    public float trapDamage;
+    public float trapTimeOfLife;
 
     public void Start()
     {
@@ -16,24 +29,29 @@ public class WeaponManager : MonoBehaviour
 
     public void PrimaryAttack()
     {
+        primaryAttack.GetComponent<MeleeWeapon>().damageAmount = primaryAttackDamage;
         primaryWeaponAnimator.SetTrigger("Attack");
     }
 
     public void SecondaryAttack(Vector3 orientation)
     {
-        // Instantiate(secondaryAttack, transform.position, transform.rotation);
-        GameObject attack = Instantiate(secondaryAttack, transform.position, Quaternion.identity);
-        // Quaternion LookAtRotation = Quaternion.LookRotation(orientation);
-        // attack.transform.rotation = Quaternion.Euler(attack.transform.rotation.eulerAngles.x, LookAtRotation.eulerAngles.y, attack.transform.rotation.eulerAngles.z);
-        attack.GetComponent<RangedWeapon>().velocity = orientation.normalized * 8;
-        attack.GetComponent<RangedWeapon>().timeOfLife = 3;
+        Quaternion LookAtRotation = Quaternion.LookRotation(orientation);
+        Quaternion projectileRotation = Quaternion.Euler(secondaryAttack.transform.rotation.eulerAngles.x, LookAtRotation.eulerAngles.y, secondaryAttack.transform.rotation.eulerAngles.z);
+
+        GameObject attack = Instantiate(secondaryAttack, transform.position, projectileRotation);
+
+        attack.GetComponent<RangedWeapon>().damageAmount = secondaryAttackDamage;
+        attack.GetComponent<RangedWeapon>().velocity = orientation.normalized * secondaryAttackVelocity;
+        attack.GetComponent<RangedWeapon>().timeOfLife = secondaryAttackTimeOfLife;
+
         playerStateMachine.CastAttackEnded();
     }
 
     public void PlaceTrap(Vector3 targetPosition, Vector3 playerPosition)
     {
-        GameObject placedTrap = Instantiate(trap, transform.position, Quaternion.identity);
-        //placedTrap.GetComponent<Trap>().timeOfLife = 3;
+        GameObject placedTrap = Instantiate(trap, transform.position, trap.transform.rotation);
+        placedTrap.GetComponent<Trap>().damageAmount = trapDamage;
+        placedTrap.GetComponent<Trap>().timeOfLife = trapTimeOfLife;
         playerStateMachine.CastAttackEnded();
     }
 }

@@ -5,7 +5,7 @@ using UnityEngine;
 public class RangedWeapon : MonoBehaviour
 {
     //How much damage the melee attack does
-    [SerializeField] private int damageAmount;
+    [SerializeField] public float damageAmount;
     //public PlayerStateMachine playerStateMachine;
     public float timeOfLife;
     public Vector3 velocity;

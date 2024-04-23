@@ -5,7 +5,7 @@ using UnityEngine;
 public class MeleeWeapon : MonoBehaviour
 {
     //How much damage the melee attack does
-    [SerializeField] private int damageAmount;
+    [SerializeField] public float damageAmount;
     public PlayerStateMachine playerStateMachine;
 
     public void Start()
