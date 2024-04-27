@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.InputSystem;
 
 public class GameManager : MonoBehaviour
 {
@@ -11,6 +12,7 @@ public class GameManager : MonoBehaviour
 
     public bool optionsMenuIsOpen = false;
     public GameObject optionsMenu;
+    public GameObject playerGameObject;
     // private int level;
 
     // Start is called before the first frame update

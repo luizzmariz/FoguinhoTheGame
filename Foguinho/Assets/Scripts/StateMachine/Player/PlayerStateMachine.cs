@@ -87,6 +87,8 @@ public class PlayerStateMachine : StateMachine
     public void GetInfo()
     {
         playerInput = GetComponent<PlayerInput>();
+        playerInput.actions.FindActionMap("UI").Enable();
+
         rigidBody = GetComponent<Rigidbody>();
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
@@ -171,4 +173,14 @@ public class PlayerStateMachine : StateMachine
     {
         isDashing = false;
     }
+
+    // void OnDisable()
+    // {
+    //     playerInput.actions.FindActionMap("Player").Disable();
+    // }
+
+    // void OnEnable()
+    // {
+    //     playerInput.actions.FindActionMap("Player").Enable();
+    // }
 }

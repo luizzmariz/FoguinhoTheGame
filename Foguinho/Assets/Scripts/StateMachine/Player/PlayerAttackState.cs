@@ -72,15 +72,7 @@ public class PlayerAttackState : BaseState
         {
             Vector2 lookDirection = ((PlayerStateMachine)stateMachine).playerInput.actions["look"].ReadValue<Vector2>();
 
-            if(lookDirection != Vector2.zero)
-            {
-                targetPoint = new Vector3(((PlayerStateMachine)stateMachine).transform.position.x + lookDirection.x * 10, targetPoint.y, ((PlayerStateMachine)stateMachine).transform.position.z + lookDirection.y * 10);
-            }
-            else
-            {
-                targetPoint = ((PlayerStateMachine)stateMachine).characterOrientation.lastOrientation;
-            }
-            
+            targetPoint = new Vector3(((PlayerStateMachine)stateMachine).transform.position.x + lookDirection.x * 10, targetPoint.y, ((PlayerStateMachine)stateMachine).transform.position.z + lookDirection.y * 10);
             ((PlayerStateMachine)stateMachine).characterOrientation.ChangeOrientation(targetPoint);
         }
 
@@ -90,7 +82,14 @@ public class PlayerAttackState : BaseState
         }
         else if(((PlayerStateMachine)stateMachine).attackType == 2)
         {
-            ((PlayerStateMachine)stateMachine).weaponManager.SecondaryAttack(targetPoint - ((PlayerStateMachine)stateMachine).transform.position);  
+            if(targetPoint - ((PlayerStateMachine)stateMachine).transform.position != Vector3.zero)
+            {
+                ((PlayerStateMachine)stateMachine).weaponManager.SecondaryAttack(targetPoint - ((PlayerStateMachine)stateMachine).transform.position);  
+            }
+            else
+            {
+                ((PlayerStateMachine)stateMachine).weaponManager.SecondaryAttack(((PlayerStateMachine)stateMachine).characterOrientation.lastOrientation - ((PlayerStateMachine)stateMachine).transform.position);  
+            }
         }
         else if(((PlayerStateMachine)stateMachine).attackType == 3)
         {
