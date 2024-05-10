@@ -234,7 +234,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7877106776636034351}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.38268343, y: -0, z: -0, w: 0.92387956}
+  m_LocalRotation: {x: 0.38268343, y: 0, z: 0, w: 0.92387956}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -242,7 +242,7 @@ Transform:
   - {fileID: 4265537167695603861}
   - {fileID: 3036779730992317197}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 45, y: 0, z: 0}
 --- !u!212 &2411225494926318139
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -350,13 +350,13 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7877106776636034351}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Actions: {fileID: -944628639613478452, guid: e2a5ecd75224ac547bcd851ae9290c0c, type: 3}
-  m_NotificationBehavior: 0
+  m_NotificationBehavior: 2
   m_UIInputModule: {fileID: 0}
   m_DeviceLostEvent:
     m_PersistentCalls:
@@ -369,7 +369,19 @@ MonoBehaviour:
       m_Calls: []
   m_ActionEvents:
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 8576086822178965201}
+        m_TargetAssemblyTypeName: PlayerStateMachine, Assembly-CSharp
+        m_MethodName: OnMove
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 1
     m_ActionId: 6c3704ee-650e-4735-920c-f770ddcd74f6
     m_ActionName: Player/Move[/Keyboard/w,/Keyboard/upArrow,/Keyboard/s,/Keyboard/downArrow,/Keyboard/a,/Keyboard/leftArrow,/Keyboard/d,/Keyboard/rightArrow]
   - m_PersistentCalls:
@@ -378,9 +390,9 @@ MonoBehaviour:
     m_ActionName: Player/Look[/Mouse/delta]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 11500000, guid: 21b689961068e1f449a9a08364a2f5bb, type: 3}
-        m_TargetAssemblyTypeName: UnityEngine.Object, UnityEngine
-        m_MethodName: 
+      - m_Target: {fileID: 8576086822178965201}
+        m_TargetAssemblyTypeName: PlayerStateMachine, Assembly-CSharp
+        m_MethodName: OnFire1
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -432,6 +444,102 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 5cf5038e-d7dc-40a0-8c57-0bced8d1793e
     m_ActionName: UI/TrackedDeviceOrientation
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 278567898039009342}
+        m_TargetAssemblyTypeName: PlayerInteract, Assembly-CSharp
+        m_MethodName: OnInteractWithAmbient
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 1
+    m_ActionId: ac6d50d1-8443-4952-82aa-3766b872d9a0
+    m_ActionName: Player/InteractWithAmbient[/Keyboard/e]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 278567898039009342}
+        m_TargetAssemblyTypeName: PlayerInteract, Assembly-CSharp
+        m_MethodName: OnEnter
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 1
+    m_ActionId: 4843d2df-04d1-4b5f-acd0-3b981fcdeedb
+    m_ActionName: Player/Enter[/Keyboard/enter]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 8576086822178965201}
+        m_TargetAssemblyTypeName: PlayerStateMachine, Assembly-CSharp
+        m_MethodName: OnFire2
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 1
+    m_ActionId: efa531b6-8eed-47c0-b8ba-f4ff74627b33
+    m_ActionName: Player/Fire2[/Mouse/rightButton]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 8576086822178965201}
+        m_TargetAssemblyTypeName: PlayerStateMachine, Assembly-CSharp
+        m_MethodName: OnDash
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 1
+    m_ActionId: 470c1f4b-593c-4c11-b351-b614cfac4a48
+    m_ActionName: Player/Dash[/Keyboard/space]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 8576086822178965201}
+        m_TargetAssemblyTypeName: PlayerStateMachine, Assembly-CSharp
+        m_MethodName: OnTrap
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 1
+    m_ActionId: 2358802d-62a1-4aa4-8549-258bffb346ff
+    m_ActionName: Player/Trap[/Keyboard/q]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: OptionsMenu, Assembly-CSharp
+        m_MethodName: OnOptions
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 1
+    m_ActionId: 40a767e9-11d0-4c8f-bf65-650208610cc9
+    m_ActionName: UI/Options[/Keyboard/escape]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player

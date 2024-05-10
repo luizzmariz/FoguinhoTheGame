@@ -27,6 +27,10 @@ public class DayCycleManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        if(sunLight == null)
+        {
+            sunLight = GameObject.Find("Directional Light"); 
+        }
         //1 hora são 15 graus
 
         //hora q o jogo começa

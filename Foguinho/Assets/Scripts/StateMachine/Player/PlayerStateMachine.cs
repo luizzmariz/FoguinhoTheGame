@@ -120,6 +120,7 @@ public class PlayerStateMachine : StateMachine
 
     public void OnFire1()
     {
+        Debug.Log("wfgf");
         attackType = 1;
         if(canAttack)
         {

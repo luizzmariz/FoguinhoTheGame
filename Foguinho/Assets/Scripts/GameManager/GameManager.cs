@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -12,7 +12,11 @@ public class GameManager : MonoBehaviour
 
     public bool optionsMenuIsOpen = false;
     public GameObject optionsMenu;
-    public GameObject playerGameObject;
+    public GameObject mainMenu;
+    public GameObject loadingInterface;
+
+    List<AsyncOperation> scenesToLoad = new List<AsyncOperation>(); 
+    // public GameObject playerGameObject;
     // private int level;
 
     // Start is called before the first frame update
@@ -31,11 +35,11 @@ public class GameManager : MonoBehaviour
     }
 
     // Update is called once per frame
-    // void Update() {
-    //     if (Input.GetKeyDown(KeyCode.Escape) && (SceneManager.GetActiveScene().buildIndex != 0)) {
-    //         ButtonFunction("pause");
-    //     }
-    // }
+    void Update() {
+        if (Input.GetKeyDown(KeyCode.Escape) && (SceneManager.GetActiveScene().name == "MenuScene")) {
+            OnOptions();
+        }
+    }
 
     public void OnOptions()
     {
@@ -47,7 +51,11 @@ public class GameManager : MonoBehaviour
         switch(button) 
         {
             case "start":
-            SceneManager.LoadScene("Teste");
+            mainMenu.SetActive(false);
+            loadingInterface.SetActive(true);
+            scenesToLoad.Add(SceneManager.LoadSceneAsync("Gameplay"));
+            scenesToLoad.Add(SceneManager.LoadSceneAsync("Level01Part01", LoadSceneMode.Additive));
+            StartCoroutine(LoadingScreen());
             break;
 
             case "options":
@@ -61,6 +69,27 @@ public class GameManager : MonoBehaviour
 
             default:
             break;
+        }
+    }
+    
+    IEnumerator LoadingScreen()
+    {
+        float totalProgress = 0;
+        Vector3 currentEulerAngles;
+        Quaternion currentRotation = new Quaternion();
+        for(int i = 0; i < scenesToLoad.Count; i++)
+        {
+            while(!scenesToLoad[i].isDone)
+            {
+                totalProgress += scenesToLoad[i].progress;
+                currentEulerAngles = new Vector3(0, 0, totalProgress / scenesToLoad.Count * 360);
+                currentRotation.eulerAngles = currentEulerAngles;
+                if(loadingInterface != null)
+                {
+                    loadingInterface.transform.rotation = currentRotation;
+                }
+                yield return null;
+            }
         }
     }
 

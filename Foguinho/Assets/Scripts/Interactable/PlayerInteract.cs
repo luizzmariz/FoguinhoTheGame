@@ -15,6 +15,11 @@ public class PlayerInteract : MonoBehaviour
 
     void Start()
     {
+        if(interactionText == null || dialogueManager == null)
+        {
+            interactionText = GameObject.Find("InteractionText").GetComponent<TMP_Text>();
+            dialogueManager = GameObject.Find("DialogueManager").GetComponent<DialogueManager>();
+        }
         interactionText.text = "";
     }
 
