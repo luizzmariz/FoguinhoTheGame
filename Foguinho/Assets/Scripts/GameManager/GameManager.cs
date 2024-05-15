@@ -54,6 +54,7 @@ public class GameManager : MonoBehaviour
             mainMenu.SetActive(false);
             loadingInterface.SetActive(true);
             scenesToLoad.Add(SceneManager.LoadSceneAsync("Gameplay"));
+            scenesToLoad.Add(SceneManager.LoadSceneAsync("LayoutLevel01", LoadSceneMode.Additive));
             scenesToLoad.Add(SceneManager.LoadSceneAsync("Level01Part01", LoadSceneMode.Additive));
             StartCoroutine(LoadingScreen());
             break;
