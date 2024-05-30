@@ -417,6 +417,28 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 16f5decb28cb43945ac083872c3e310e, type: 3}
+--- !u!114 &831989222 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3985747155731985343, guid: 43b38d7513b322f468978097a31ba9fb, type: 3}
+  m_PrefabInstance: {fileID: 1268152316}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &904353101 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1672107592393362381, guid: 43b38d7513b322f468978097a31ba9fb, type: 3}
+  m_PrefabInstance: {fileID: 1268152316}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1268152316
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -525,6 +547,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b216a5d1526c04d47aa72306f68565bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!95 &1268152318 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 2797983986923323529, guid: 43b38d7513b322f468978097a31ba9fb, type: 3}
+  m_PrefabInstance: {fileID: 1268152316}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1395769653
 GameObject:
   m_ObjectHideFlags: 0
@@ -643,6 +670,17 @@ MonoBehaviour:
   m_LightCookieSize: {x: 1, y: 1}
   m_LightCookieOffset: {x: 0, y: 0}
   m_SoftShadowQuality: 0
+--- !u!114 &1535590447 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1449289586760330831, guid: 43b38d7513b322f468978097a31ba9fb, type: 3}
+  m_PrefabInstance: {fileID: 1268152316}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1746918908
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -712,6 +750,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: DialogueManager
       objectReference: {fileID: 0}
+    - target: {fileID: 3063642230084200808, guid: 8411a3a77c5202b41ba428a7d4584ec2, type: 3}
+      propertyPath: animator
+      value: 
+      objectReference: {fileID: 1268152318}
+    - target: {fileID: 3063642230084200808, guid: 8411a3a77c5202b41ba428a7d4584ec2, type: 3}
+      propertyPath: nameText
+      value: 
+      objectReference: {fileID: 904353101}
+    - target: {fileID: 3063642230084200808, guid: 8411a3a77c5202b41ba428a7d4584ec2, type: 3}
+      propertyPath: dialogueText
+      value: 
+      objectReference: {fileID: 1535590447}
+    - target: {fileID: 3063642230084200808, guid: 8411a3a77c5202b41ba428a7d4584ec2, type: 3}
+      propertyPath: dialogueImage
+      value: 
+      objectReference: {fileID: 831989222}
     - target: {fileID: 3615501362311210269, guid: 8411a3a77c5202b41ba428a7d4584ec2, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

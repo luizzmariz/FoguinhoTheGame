@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &8606160728660976505
+--- !u!1 &1552800956222643487
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,39 +8,39 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 7252489829155131857}
-  - component: {fileID: 955294910217835410}
-  - component: {fileID: 549397875115225359}
-  - component: {fileID: 6973281238402634910}
+  - component: {fileID: 1958874204029591717}
+  - component: {fileID: 3666402441694719934}
+  - component: {fileID: 402500870072121719}
+  - component: {fileID: 1863871561206278805}
   m_Layer: 0
-  m_Name: Fogueira
-  m_TagString: Obstacle
+  m_Name: TestNPC
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &7252489829155131857
+--- !u!4 &1958874204029591717
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8606160728660976505}
+  m_GameObject: {fileID: 1552800956222643487}
   serializedVersion: 2
   m_LocalRotation: {x: 0.38268343, y: 0, z: 0, w: 0.92387956}
-  m_LocalPosition: {x: -11, y: 0, z: -12}
+  m_LocalPosition: {x: 6, y: 0, z: 10}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 45, y: 0, z: 0}
---- !u!212 &955294910217835410
+--- !u!212 &3666402441694719934
 SpriteRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8606160728660976505}
+  m_GameObject: {fileID: 1552800956222643487}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 0
@@ -75,38 +75,24 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: b33437511f386be4e8146bc389631071, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 6b2d965fc95c15d478267535bed34c34, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 4.81, y: 6.24}
+  m_Size: {x: 6.2, y: 8.77}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &549397875115225359
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8606160728660976505}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a96ed884af35b994abfba19e177685ba, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  promptMessage: Fogueira
-  dayCycleManager: {fileID: 0}
---- !u!65 &6973281238402634910
+--- !u!65 &402500870072121719
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8606160728660976505}
+  m_GameObject: {fileID: 1552800956222643487}
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -119,5 +105,29 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 4.8, y: 6.2, z: 0.2}
-  m_Center: {x: 0, y: 3.1, z: 0}
+  m_Size: {x: 3.5, y: 7, z: 0.2}
+  m_Center: {x: 0, y: 4, z: 0}
+--- !u!114 &1863871561206278805
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1552800956222643487}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5a4bb686dfa01e4d904744db750f53a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  promptMessage: "Z\xE9 Boquinha"
+  dialogue:
+    name: "Z\xE9 Boquinha"
+    sentences:
+    - 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+      incididunt ut labore et dolore magna aliqua. Nunc lobortis mattis aliquam faucibus.
+      Semper risus in hendrerit gravida rutrum quisque. '
+    - "Aprantemente deu certo e eu posso progredir contando a hist\xF3ria da minha
+      vida, afinal pessoas com muito otgulho de si mesmas fazem isso n\xE9? n\xE9...?
+      (Z\xE9 Boquinha reflte por mais um tempo...)"
+    - "Ent\xE3o, 3 textos, foda \xE9 isso ai msm, boa mlk"
+  dialogueSprite: {fileID: 21300000, guid: 6b2d965fc95c15d478267535bed34c34, type: 3}

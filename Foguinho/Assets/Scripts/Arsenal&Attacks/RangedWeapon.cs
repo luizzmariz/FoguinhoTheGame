@@ -31,7 +31,7 @@ public class RangedWeapon : MonoBehaviour
     private void OnTriggerEnter(Collider collision)
     {
         //Checks to see if the GameObject the MeleeWeapon is colliding with has an EnemyHealth script
-        if (collision.GetComponent<EnemyDamageable>())
+        if(collision.GetComponent<EnemyDamageable>())
         {
             // //Method that checks to see what force can be applied to the player when melee attacking
             // HandleCollision(collision.GetComponent<EnemyHealth>());
@@ -40,8 +40,9 @@ public class RangedWeapon : MonoBehaviour
             collision.GetComponent<EnemyDamageable>().Damage(damageAmount);
             // //Coroutine that turns off all the bools related to melee attack collision and direction
             // StartCoroutine(NoLongerColliding());
+            Destroy(this.gameObject);
         }
-        if(!collision.GetComponent<PlayerDamageable>())
+        if(collision.gameObject.CompareTag("Obstacle"))
         {
             Destroy(this.gameObject);
         }

@@ -9,7 +9,12 @@ public class NPCInteractable : Interactable
 
     protected override void Interact()
     {
-        FindObjectOfType<DialogueManager>().StartDialogue(dialogue, dialogueSprite);
+        Debug.Log(dialogue.name);
+
+        GameObject.Find("DialogueManager").GetComponent<DialogueManager>().StartDialogue(dialogue, dialogueSprite);
+        //FindObjectOfType<DialogueManager>().StartDialogue(dialogue, dialogueSprite);
+
+        Debug.Log("555");
     }
 
     public override string GetPromptMessage()

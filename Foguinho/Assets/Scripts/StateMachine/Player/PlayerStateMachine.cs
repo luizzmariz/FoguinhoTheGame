@@ -110,56 +110,70 @@ public class PlayerStateMachine : StateMachine
     //     GUILayout.EndArea();
     // }
 
-    public void OnMove()
+    public void OnMove(InputAction.CallbackContext context)
     {
-        if(canMove)
+        if(context.performed)
         {
-            ChangeState(moveState);
-        }
-    }
-
-    public void OnFire1()
-    {
-        Debug.Log("wfgf");
-        attackType = 1;
-        if(canAttack)
-        {
-            if(attack1CooldownTimer == 0)
+            if(canMove)
             {
-                ChangeState(attackState);
+                ChangeState(moveState);
             }
         }
     }
 
-    public void OnFire2()
+    public void OnFire1(InputAction.CallbackContext context)
     {
-        attackType = 2;
-        if(canAttack)
+        if(context.performed)
         {
-            if(attack2CooldownTimer == 0)
+            attackType = 1;
+            if(canAttack)
             {
-                ChangeState(attackState);
+                if(attack1CooldownTimer == 0)
+                {
+                    ChangeState(attackState);
+                }
             }
         }
     }
 
-    public void OnDash()
+    public void OnFire2(InputAction.CallbackContext context)
     {
-        if(canDash)
+        if(context.performed)
         {
-            if(dashCooldownTimer == 0)
+            attackType = 2;
+            if(canAttack)
             {
-                ChangeState(dashState);
+                if(attack2CooldownTimer == 0)
+                {
+                    ChangeState(attackState);
+                }
             }
         }
     }
 
-    public void OnTrap()
+    public void OnDash(InputAction.CallbackContext context)
+    {
+        if(context.performed)
+        {
+            if(canDash)
+            {
+                if(dashCooldownTimer == 0)
+                {
+                    ChangeState(dashState);
+                }
+            }
+        }
+    }
+
+    public void OnTrap(InputAction.CallbackContext context)
     {   
-        attackType = 3;
-        if(canAttack)
+        if(context.performed)
         {
-            ChangeState(attackState);
+            attackType = 3;
+            if(canAttack)
+            {
+                ChangeState(attackState);
+            }
         }
     }
 

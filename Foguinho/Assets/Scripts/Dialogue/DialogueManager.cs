@@ -26,6 +26,8 @@ public class DialogueManager : MonoBehaviour {
 
 	public void StartDialogue(Dialogue dialogue, Sprite dialogueSprite)
 	{
+		Debug.Log("666");
+
 		playerStateMachine.ChangeState(playerStateMachine.interactState);
 		animator.SetBool("DialogueBoxIsOpen", true);
 

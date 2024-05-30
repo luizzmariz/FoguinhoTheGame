@@ -373,7 +373,7 @@ MonoBehaviour:
       - m_Target: {fileID: 8576086822178965201}
         m_TargetAssemblyTypeName: PlayerStateMachine, Assembly-CSharp
         m_MethodName: OnMove
-        m_Mode: 1
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -393,7 +393,7 @@ MonoBehaviour:
       - m_Target: {fileID: 8576086822178965201}
         m_TargetAssemblyTypeName: PlayerStateMachine, Assembly-CSharp
         m_MethodName: OnFire1
-        m_Mode: 1
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -449,7 +449,7 @@ MonoBehaviour:
       - m_Target: {fileID: 278567898039009342}
         m_TargetAssemblyTypeName: PlayerInteract, Assembly-CSharp
         m_MethodName: OnInteractWithAmbient
-        m_Mode: 1
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -465,7 +465,7 @@ MonoBehaviour:
       - m_Target: {fileID: 278567898039009342}
         m_TargetAssemblyTypeName: PlayerInteract, Assembly-CSharp
         m_MethodName: OnEnter
-        m_Mode: 1
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -481,7 +481,7 @@ MonoBehaviour:
       - m_Target: {fileID: 8576086822178965201}
         m_TargetAssemblyTypeName: PlayerStateMachine, Assembly-CSharp
         m_MethodName: OnFire2
-        m_Mode: 1
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -497,7 +497,7 @@ MonoBehaviour:
       - m_Target: {fileID: 8576086822178965201}
         m_TargetAssemblyTypeName: PlayerStateMachine, Assembly-CSharp
         m_MethodName: OnDash
-        m_Mode: 1
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -513,7 +513,7 @@ MonoBehaviour:
       - m_Target: {fileID: 8576086822178965201}
         m_TargetAssemblyTypeName: PlayerStateMachine, Assembly-CSharp
         m_MethodName: OnTrap
-        m_Mode: 1
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine

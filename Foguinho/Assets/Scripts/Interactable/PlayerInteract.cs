@@ -29,19 +29,27 @@ public class PlayerInteract : MonoBehaviour
         CheckClosestCollider();
     }
 
-    public void OnInteractWithAmbient()
+    public void OnInteractWithAmbient(InputAction.CallbackContext context)
     {
-        if(closestCollider != null && !dialogueManager.animator.GetBool("DialogueBoxIsOpen"))
+        if(context.performed)
         {
-            closestCollider.GetComponent<Interactable>().BaseInteract();
+            Debug.Log("OnInteractWithAmbient");
+            if(closestCollider != null && !dialogueManager.animator.GetBool("DialogueBoxIsOpen"))
+            {
+                closestCollider.GetComponent<Interactable>().BaseInteract();
+            }
         }
     }
 
-    public void OnEnter()
+    public void OnEnter(InputAction.CallbackContext context)
     {
-        if(dialogueManager.animator.GetBool("DialogueBoxIsOpen"))
+        if(context.performed)
         {
-            dialogueManager.DisplayNextSentence();
+            Debug.Log("OnEnter");
+            if(dialogueManager.animator.GetBool("DialogueBoxIsOpen"))
+            {
+                dialogueManager.DisplayNextSentence();
+            }
         }
     }
 
