@@ -11,13 +11,14 @@ public class DayCycleManager : MonoBehaviour
     Vector3 rotation = Vector3.zero;
     public float degreesPerSecond;
     public float rotatingDuration;
-    public bool isRotating;
+    public bool timeIsPassing;
     public bool isDay;
     public int dayPhase;
     public GameObject sunLight;
 
     [Header("DayTime")]
     public float dayTime;
+    public float newDayTime;
     public float secondsBetweenHours;
 
     [Header("ActionTokens")]
@@ -31,20 +32,22 @@ public class DayCycleManager : MonoBehaviour
         {
             sunLight = GameObject.Find("Directional Light"); 
         }
-        //1 hora são 15 graus
+        //360° (volta completa) / 24h (horas do dia) -> 15 graus por hora
 
-        //hora q o jogo começa
-        dayTime = 5.5f;
+        //hora q o jogo começa = 5:30h -> 5.5f
+        //dayTime = 5.5f;
         //graus por segundo (3 segundos para percorrer 1 hora no tempo do jogo)
         degreesPerSecond = 5;
         secondsBetweenHours = 3;
 
-        isRotating = false;
+        //isRotating = false;
         dayPhase = 0;
+
+        newDayTime = dayTime;
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         // if(isRotating)
         // {
@@ -77,53 +80,87 @@ public class DayCycleManager : MonoBehaviour
         //     secondsBetweenHours = 3;
         // }
 
-        dayTime += Time.deltaTime/3;
-        if(dayTime >= 24)
-        {
-           dayTime = 0; 
-        }
+        // dayTime += Time.deltaTime/3;
+        // if(dayTime >= 24)
+        // {
+        //    dayTime = 0; 
+        // }
 
-        rotation.x = degreesPerSecond * Time.deltaTime;
-        sunLight.transform.Rotate(rotation, Space.World);
-        RenderSettings.ambientLight = ambientColor.Evaluate(dayTime/24);
-    }
+        // rotation.x = degreesPerSecond * Time.deltaTime;
+        // sunLight.transform.Rotate(rotation, Space.World);
+        // RenderSettings.ambientLight = ambientColor.Evaluate(dayTime/24);
 
-    public void UpdateActionTokens(float actionTokens)
-    {
-        currentActionTokensTaken += actionTokens;
-        if(currentActionTokensTaken % (currentAreaActionTokens/3) == 0)
+        if(timeIsPassing)
         {
-            ControlDayCycle();
+            rotation.x = degreesPerSecond * Time.deltaTime;
+            sunLight.transform.Rotate(rotation, Space.World);
+            RenderSettings.ambientLight = ambientColor.Evaluate(dayTime/24);
         }
     }
 
-    public void ControlDayCycle()
+    // public void UpdateActionTokens(float actionTokens)
+    // {
+    //     currentActionTokensTaken += actionTokens;
+    //     if(currentActionTokensTaken % (currentAreaActionTokens/3) == 0)
+    //     {
+    //         ControlDayCycle();
+    //     }
+    // }
+
+    // public void ControlDayCycle()
+    // {
+    //     if(!isRotating)
+    //     {
+    //         if(isDay)
+    //         {
+    //             if(dayPhase == 2)
+    //             {
+    //                 dayPhase = 0;
+    //                 isDay = false;
+    //                 degreesPerSecond = 5;
+    //                 rotatingDuration = 20;
+    //             }
+    //             else
+    //             {
+    //                 dayPhase++;
+    //                 degreesPerSecond = 15;
+    //                 rotatingDuration = 4;
+    //                 Debug.Log(sunLight.transform.rotation.eulerAngles);
+    //             }
+    //             isRotating = true;
+    //         }
+    //         else
+    //         {
+    //             sunLight.transform.rotation = new Quaternion(0.42261827f,0,0,0.906307876f);
+    //             isDay = true;
+    //         }
+    //     }
+    // }
+
+    public void AdvanceTime(int hours)
     {
-        if(!isRotating)
+        newDayTime = (dayTime + hours)%24;
+        //timeIsPassing = true;
+        StartCoroutine(Example(hours));
+    }
+
+    IEnumerator Example(int hours)
+    {
+        Debug.Log("Started Coroutine1 at timestamp : " + Time.time);
+
+        while(hours > 0)
         {
-            if(isDay)
-            {
-                if(dayPhase == 2)
-                {
-                    dayPhase = 0;
-                    isDay = false;
-                    degreesPerSecond = 5;
-                    rotatingDuration = 20;
-                }
-                else
-                {
-                    dayPhase++;
-                    degreesPerSecond = 15;
-                    rotatingDuration = 4;
-                    Debug.Log(sunLight.transform.rotation.eulerAngles);
-                }
-                isRotating = true;
-            }
-            else
-            {
-                sunLight.transform.rotation = new Quaternion(0.42261827f,0,0,0.906307876f);
-                isDay = true;
-            }
+            //PassTime();
+            timeIsPassing = !timeIsPassing;
+            yield return new WaitForSeconds(1.5f);
+            //dayTime = (dayTime + Time.deltaTime)%24;
+            dayTime ++;
+            Debug.Log(dayTime);
+            timeIsPassing = !timeIsPassing;
+            //PassTime();
+            hours--;
         }
+
+        Debug.Log("Finished Coroutine1 at timestamp : " + Time.time);
     }
 }

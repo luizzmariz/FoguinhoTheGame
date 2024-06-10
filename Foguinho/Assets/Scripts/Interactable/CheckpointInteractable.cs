@@ -5,6 +5,7 @@ using UnityEngine;
 public class CheckpointInteractable : Interactable
 {
     public DayCycleManager dayCycleManager;
+    [SerializeField] private int hoursToPass;
 
     void Start()
     {
@@ -13,7 +14,8 @@ public class CheckpointInteractable : Interactable
 
     protected override void Interact()
     {
-        dayCycleManager.ControlDayCycle();
+       // dayCycleManager.ControlDayCycle();
+       dayCycleManager.AdvanceTime(hoursToPass);
     }
 
     public override string GetPromptMessage()

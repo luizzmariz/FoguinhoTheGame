@@ -655,13 +655,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 705507993}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0.012845238, w: 0.9999175}
   m_LocalPosition: {x: 0, y: 3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 1.4720001}
 --- !u!114 &705507996
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1785,6 +1785,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 549397875115225359, guid: da29c874a619ff74eb86469293ded085, type: 3}
+      propertyPath: hoursToPass
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 549397875115225359, guid: da29c874a619ff74eb86469293ded085, type: 3}
       propertyPath: dayCycleManager
       value: 
       objectReference: {fileID: 1453314733}
@@ -1949,6 +1953,10 @@ PrefabInstance:
     - target: {fileID: 6073998766581074170, guid: dc56017c0b15fe14d93944bf90cc2e88, type: 3}
       propertyPath: m_Name
       value: DayCycleManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 9104227180103651147, guid: dc56017c0b15fe14d93944bf90cc2e88, type: 3}
+      propertyPath: dayTime
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 9104227180103651147, guid: dc56017c0b15fe14d93944bf90cc2e88, type: 3}
       propertyPath: sunLight

@@ -33,7 +33,6 @@ public class PlayerInteract : MonoBehaviour
     {
         if(context.performed)
         {
-            Debug.Log("OnInteractWithAmbient");
             if(closestCollider != null && !dialogueManager.animator.GetBool("DialogueBoxIsOpen"))
             {
                 closestCollider.GetComponent<Interactable>().BaseInteract();
