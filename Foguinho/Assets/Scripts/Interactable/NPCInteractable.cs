@@ -1,20 +1,21 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class NPCInteractable : Interactable
 {
-    public Dialogue dialogue;
-    public Sprite dialogueSprite;
+    public String NPCName;
+    public int actionCost;
+
+    // void Start()
+    // {
+    //     GameObject.Find("LevelManager").GetComponent<DialogueManager>().StartDialogue(dialogue, dialogueSprite);
+    // }
 
     protected override void Interact()
     {
-        Debug.Log(dialogue.name);
-
-        GameObject.Find("DialogueManager").GetComponent<DialogueManager>().StartDialogue(dialogue, dialogueSprite);
-        //FindObjectOfType<DialogueManager>().StartDialogue(dialogue, dialogueSprite);
-
-        Debug.Log("555");
+        LevelManager.instance.StartSpeakerDialogue(NPCName,actionCost);
     }
 
     public override string GetPromptMessage()

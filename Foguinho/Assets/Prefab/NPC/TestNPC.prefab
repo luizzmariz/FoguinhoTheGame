@@ -12,9 +12,10 @@ GameObject:
   - component: {fileID: 3666402441694719934}
   - component: {fileID: 402500870072121719}
   - component: {fileID: 1863871561206278805}
+  - component: {fileID: 4210146515135305655}
   m_Layer: 0
   m_Name: TestNPC
-  m_TagString: Untagged
+  m_TagString: NPC
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -120,14 +121,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   promptMessage: "Z\xE9 Boquinha"
-  dialogue:
-    name: "Z\xE9 Boquinha"
-    sentences:
-    - 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-      incididunt ut labore et dolore magna aliqua. Nunc lobortis mattis aliquam faucibus.
-      Semper risus in hendrerit gravida rutrum quisque. '
-    - "Aprantemente deu certo e eu posso progredir contando a hist\xF3ria da minha
-      vida, afinal pessoas com muito otgulho de si mesmas fazem isso n\xE9? n\xE9...?
-      (Z\xE9 Boquinha reflte por mais um tempo...)"
-    - "Ent\xE3o, 3 textos, foda \xE9 isso ai msm, boa mlk"
-  dialogueSprite: {fileID: 21300000, guid: 6b2d965fc95c15d478267535bed34c34, type: 3}
+  NPCName: 
+  actionCost: 0
+--- !u!114 &4210146515135305655
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1552800956222643487}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 750d2391b3465ba4ea5bac2c0877d261, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  npcName: 
+  positions: []
+  relationLevel: 0
+  dialogues: []
+  morningDialogues: []
+  afternoonDialogues: []
+  eveningDialogues: []
+  eventDialogues: []

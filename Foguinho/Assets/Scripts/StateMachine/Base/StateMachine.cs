@@ -28,7 +28,7 @@ public class StateMachine : MonoBehaviour {
     public void ChangeState(BaseState newState) 
     {
         currentState.Exit();
-
+        
         currentState = newState;
         currentState.Enter();
     }

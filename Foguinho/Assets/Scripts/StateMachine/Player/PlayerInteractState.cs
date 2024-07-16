@@ -11,6 +11,7 @@ public class PlayerInteractState : BaseState
 
     public override void Enter() {
         ((PlayerStateMachine)stateMachine).canMove = false;
+        ((PlayerStateMachine)stateMachine).canDash = false;
         ((PlayerStateMachine)stateMachine).canAttack = false;
     }
 
@@ -28,6 +29,7 @@ public class PlayerInteractState : BaseState
     public void ExitState()
     {
         ((PlayerStateMachine)stateMachine).canMove = true;
+        ((PlayerStateMachine)stateMachine).canDash = true;
         ((PlayerStateMachine)stateMachine).canAttack = true;
         ((PlayerStateMachine)stateMachine).ChangeState(((PlayerStateMachine)stateMachine).idleState);
     }

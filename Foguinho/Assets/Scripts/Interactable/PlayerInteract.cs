@@ -44,7 +44,7 @@ public class PlayerInteract : MonoBehaviour
     {
         if(context.performed)
         {
-            Debug.Log("OnEnter");
+            //Debug.Log("OnEnter");
             if(dialogueManager.animator.GetBool("DialogueBoxIsOpen"))
             {
                 dialogueManager.DisplayNextSentence();
